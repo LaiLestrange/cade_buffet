@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CadeBuffet</title>
+    <title>Cadê Buffet?</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <header>
+      <h1><%= link_to 'Cadê Buffet?', root_path %></h1>
+      <% if buffet_admin_signed_in? %>
+        <div>
+          <p>Olá, <%= current_buffet_admin.name %></p>
+          <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
+        </div>
+      <% else %>
+        <%= link_to 'Entrar', new_buffet_admin_session_path %>
+      <% end %>
+    </header>
+
     <%= notice %>
     <%= alert %>
     <%= yield %>

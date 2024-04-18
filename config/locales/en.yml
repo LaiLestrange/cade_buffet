@@ -29,3 +29,5 @@
 
 en:
   hello: "Hello world"
+pt-BR:
+  hello: "Olá, mundo!"
