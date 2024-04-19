@@ -25,7 +25,7 @@ describe "BuffetAdmin register Buffet" do
       end
 
       #assert
-      expect(current_path).to eq root_path
+      expect(current_path).to eq new_buffet_path
       expect(page).to have_button "Sair"
       expect(page).to have_content "Cadastro de Buffet"
       within('#new_buffet') do
@@ -42,7 +42,36 @@ describe "BuffetAdmin register Buffet" do
         expect(page).to have_button 'Criar Buffet'
       end
     end
-    #and does it successfully
+
+    it 'and does it successfully' do
+      #arrange
+      buffet_admin = BuffetAdmin.create!(
+        name: "Administrador do Buffet",
+        email: "buffet@admin.com",
+        password: "04dm1n"
+      )
+      login_as(buffet_admin, scope: :buffet_admin)
+      #act
+      visit root_path
+      within('#new_buffet') do
+        fill_in 'Nome Fantasia', with: 'Eventos Buffet'
+        fill_in 'Descrição', with: 'Um buffet que provê serviços de eventos'
+        fill_in 'Nome de Registro', with: 'Buffet de Eventos LTDA'
+        fill_in 'CNPJ', with: '333-456'
+        fill_in 'Telefone', with: '11 2222-3333'
+        fill_in 'E-mail', with: 'eventos@buffet.com'
+        fill_in 'Endereço', with: 'Rua dos Eventos, 12'
+        fill_in 'Estado', with: 'EV'
+        fill_in 'Cidade', with: 'Eventualidade'
+        fill_in 'CEP', with: '34567-891'
+        click_on 'Criar Buffet'
+      end
+
+      #assert
+      expect(current_path).to eq buffets_path
+      expect(page).to have_content 'TEM QUE CHEGAR AQUI'
+    end
+
     #and has access to other routes
   end
 

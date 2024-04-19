@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
   create_table "buffets", force: :cascade do |t|
     t.string "brand_name"
     t.string "company_name"
-    t.string "register_number"
+    t.string "registration_number"
     t.string "phone_number"
     t.string "email"
     t.string "full_address"

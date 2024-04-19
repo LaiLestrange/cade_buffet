@@ -21,6 +21,19 @@ describe "BuffetAdmin opens the app" do
       email: "buffet@admin.com",
       password: "04dm1n"
     )
+    buffet = Buffet.create!(
+      brand_name: 'Eventos Buffet',
+      company_name: 'Buffet de Eventos LTDA',
+      registration_number: '123456789',
+      phone_number: '11 1111-1111',
+      email: 'eventos@buffet.com',
+      full_address: 'Rua dos Eventos, 2',
+      state: 'EV',
+      city: 'Eventual',
+      zip_code: '33333-333',
+      description: 'Esse é um Buffet de Eventos',
+      buffet_admin_id: admin.id
+    )
 
     #act
     visit root_path

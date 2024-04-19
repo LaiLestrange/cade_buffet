@@ -44,9 +44,9 @@ describe "BuffetAdmin signs_up" do
     end
 
     #assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_buffet_path
     expect(page).to have_content "Olá, #{new_user.name}"
-    expect(page).to have_content "Boas vindas! Você realizou seu registro com sucesso."
+    expect(page).to have_content "Cadastre seu Buffet"
     expect(page).to have_button "Sair"
   end
   it "and leaves name blank" do
@@ -72,9 +72,9 @@ describe "BuffetAdmin signs_up" do
     end
 
     #assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_buffet_path
     expect(page).to have_content "Olá, #{new_user.email}"
-    expect(page).to have_content "Boas vindas! Você realizou seu registro com sucesso."
+    expect(page).to have_content "Cadastre seu Buffet"
     expect(page).to have_button "Sair"
   end
 end

@@ -6,7 +6,7 @@ pt-BR:
       buffet:
         brand_name: 'Nome Fantasia'
         company_name: 'Nome de Registro'
-        register_number: 'CNPJ'
+        registration_number: 'CNPJ'
         phone_number: 'Telefone'
         email: 'E-mail'
         full_address: 'Endereço'
