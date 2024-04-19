@@ -14,7 +14,7 @@ describe "BuffetAdmin opens the app" do
     end
   end
 
-  it 'and logs in' do
+  it 'and logs in successfully' do
     #arrange
     admin = BuffetAdmin.create!(
       name: "Administrador do Buffet",
@@ -35,25 +35,8 @@ describe "BuffetAdmin opens the app" do
 
     #assert
     expect(current_path).to eq root_path
-  end
-
-  it 'successfully' do
-    #arrange
-    admin = BuffetAdmin.create!(
-      name: "Ademir do Buffet",
-      email: "buffet@adm.com",
-      password: "04dm1n"
-    )
-
-    login_as admin, scope: :buffet_admin
-
-    #act
-    visit root_path
-
-    #assert
     expect(page).to have_content "Olá, #{admin.name}"
     expect(page).to have_button "Sair"
-
   end
 
   it 'and logs out successfully' do

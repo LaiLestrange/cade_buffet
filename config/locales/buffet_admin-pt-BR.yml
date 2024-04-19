@@ -1,5 +1,7 @@
 pt-BR:
   activerecord:
+    models:
+      buffet_admin: 'Administrador de Buffet'
     attributes:
       buffet_admin:
         confirmation_sent_at: Confirmação enviada em
@@ -25,5 +27,4 @@ pt-BR:
         unconfirmed_email: E-mail não confirmado
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
-    models:
-      buffet_admin: 'Administrador de Buffet'
+        name: 'Nome'
