@@ -21,7 +21,6 @@ describe "BuffetAdmin signs_up" do
       expect(page).to have_button 'Criar conta'
     end
   end
-
   it "successfully" do
     #arrange
     new_user = BuffetAdmin.new(

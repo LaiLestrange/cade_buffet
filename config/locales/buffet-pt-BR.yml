@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      buffet: 'Buffet'
+    attributes:
+      buffet:
+        brand_name: 'Nome Fantasia'
+        company_name: 'Nome de Registro'
+        register_number: 'CNPJ'
+        phone_number: 'Telefone'
+        email: 'E-mail'
+        full_address: 'Endereço'
+        state: 'Estado'
+        city: 'Cidade'
+        zip_code: 'CEP'
+        description: 'Descrição'
+        buffet_admin_id: 'Administrador do Buffet'
