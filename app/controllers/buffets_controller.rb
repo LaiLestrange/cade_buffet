@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-  before_action :authenticate_buffet_admin!, only: [:show, :create]
+  before_action :authenticate_buffet_admin!, only: [:show, :edit, :update, :new, :create]
 
   def index
     if buffet_admin_signed_in? && current_buffet_admin.buffet.blank?
@@ -13,6 +13,7 @@ class BuffetsController < ApplicationController
   def new
     @buffet = Buffet.new
   end
+
   def create
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_admin_id = current_buffet_admin.id
@@ -20,9 +21,22 @@ class BuffetsController < ApplicationController
       current_buffet_admin.update(buffet_id: @buffet.id)
       redirect_to buffet_path(@buffet.id), notice: "Buffet cadastrado com sucesso!"
     else
-      # flash.now[:notice] =
       redirect_to new_buffet_path, notice: "Cadastre seu Buffet"
     end
+  end
+
+  def edit
+    @buffet = Buffet.find(current_buffet_admin.buffet_id)
+  end
+
+  def update
+    if @buffet.update(buffet_params)
+      redirect_to buffet_path(@buffet.id), notice: "Buffet atualizado com sucesso!"
+    else
+      flash.now[:notice] = "Não foi possível atualizar o Buffet!"
+      render 'edit'
+    end
+
   end
 
   private

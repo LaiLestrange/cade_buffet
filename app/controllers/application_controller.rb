@@ -22,6 +22,12 @@ class ApplicationController < ActionController::Base
         if current_path == new_buffet_path
           redirect_to root_path, notice: 'Já possui um Buffet cadastrado!'
         end
+        if current_path == edit_buffet_path && current_path != edit_buffet_path(@buffet)
+          redirect_to edit_buffet_path(@buffet), notice: 'Edite o seu Buffet'
+        end
+        if current_path == buffet_path && current_path != buffet_path(@buffet)
+          redirect_to buffet_path(@buffet)
+        end
       end
     end
   end
