@@ -1,0 +1,19 @@
+<h1><%= @buffet.brand_name %></h1>
+<h2><%= @buffet.description %></h2>
+
+<div>
+  <h3>Informações:</h3>
+  <ul>
+    <li> <strong>Nome de Registro: </strong> <%= @buffet.company_name %></li>
+    <li> <strong>CNPJ: </strong> <%= @buffet.registration_number %></li>
+    <li> <strong>Telefone: </strong> <%= @buffet.phone_number %></li>
+    <li> <strong>E-mail: </strong> <%= @buffet.email %></li>
+    <li> <strong>Localização: </strong>
+      <p>
+        <%= @buffet.full_address %><br>
+        <%= @buffet.city %> |  <%= @buffet.state %><br>
+        CEP: <%= @buffet.zip_code %><br>
+      </p>
+    </li>
+  </ul>
+</div>

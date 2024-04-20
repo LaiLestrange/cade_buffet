@@ -8,16 +8,23 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_has_buffet
-    is_admin = buffet_admin_signed_in?
-    registered_buffet = Buffet.where(buffet_admin_id: current_buffet_admin.id) if is_admin
-    missing_buffet = registered_buffet.blank? && is_admin
+
+    # registered_buffet = Buffet.where(buffet_admin_id: current_buffet_admin.id) if is_admin
+    missing_buffet = buffet_admin_signed_in? && current_buffet_admin.buffet_id.nil?
     current_path = url_for(only_path: true)
+
     if missing_buffet
       unless current_path == new_buffet_path || current_path == destroy_buffet_admin_session_path || current_path == buffets_path
         @buffet = Buffet.new
         redirect_to new_buffet_path, notice: 'Cadastre seu Buffet'
       end
+    else
+      if buffet_admin_signed_in?
+        @buffet = Buffet.find(current_buffet_admin.buffet_id)
+        if current_path == new_buffet_path
+          redirect_to root_path, notice: 'Já possui um Buffet cadastrado!'
+        end
+      end
     end
   end
-
 end

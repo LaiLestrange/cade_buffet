@@ -1,5 +1,14 @@
 <h1>Cadastro de Buffet</h1>
 
+<% if @buffet.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @buffet.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div id="new_buffet">
   <%= form_with model: @buffet do |f| %>
 

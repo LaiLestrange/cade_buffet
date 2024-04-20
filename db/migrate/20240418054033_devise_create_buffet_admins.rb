@@ -33,6 +33,7 @@ class DeviseCreateBuffetAdmins < ActiveRecord::Migration[7.1]
       # t.datetime :locked_at
 
       t.string :name
+      t.references :buffet, foreign_key: true
 
       t.timestamps null: false
     end

@@ -14,16 +14,20 @@
       <h1><%= link_to 'Cadê Buffet?', root_path %></h1>
       <% if buffet_admin_signed_in? %>
         <div>
-          <p>Olá, <%= current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %></p>
+          <% name_to_show = current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %>
+          <% buffet_of_admin = current_buffet_admin.buffet %>
+
+          <p>Olá, <%= link_to name_to_show, buffet_of_admin %></p>
           <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
         </div>
       <% else %>
         <%= link_to 'Entrar', new_buffet_admin_session_path %>
       <% end %>
     </header>
-
-    <%= notice %>
-    <%= alert %>
+    <div>
+      <%= notice %>
+      <%= alert %>
+    </div>
 
     <div>
       <%= yield %>

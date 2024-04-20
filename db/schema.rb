@@ -18,8 +18,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.integer "buffet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["buffet_id"], name: "index_buffet_admins_on_buffet_id"
     t.index ["email"], name: "index_buffet_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_buffet_admins_on_reset_password_token", unique: true
   end
@@ -41,5 +43,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
     t.index ["buffet_admin_id"], name: "index_buffets_on_buffet_admin_id"
   end
 
+  add_foreign_key "buffet_admins", "buffets"
   add_foreign_key "buffets", "buffet_admins"
 end
