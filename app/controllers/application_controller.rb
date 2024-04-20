@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_has_buffet
-
-    # registered_buffet = Buffet.where(buffet_admin_id: current_buffet_admin.id) if is_admin
     missing_buffet = buffet_admin_signed_in? && current_buffet_admin.buffet_id.nil?
     current_path = url_for(only_path: true)
 

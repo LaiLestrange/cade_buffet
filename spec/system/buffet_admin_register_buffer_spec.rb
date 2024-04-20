@@ -115,7 +115,6 @@ describe "BuffetAdmin register Buffet" do
     end
   end
 
-
   context "wrong behaviour" do
     it 'tries other routes before registering the buffet' do
       #arrange
@@ -133,7 +132,7 @@ describe "BuffetAdmin register Buffet" do
       expect(current_path).to eq new_buffet_path
     end
 
-    it 'INCOMPLETO tries to fill out with missing information' do
+    it 'tries to fill out with missing information' do
         #arrange
         admin = BuffetAdmin.create!(
           name: "Administrador Errado",
@@ -197,17 +196,3 @@ describe "BuffetAdmin register Buffet" do
     end
   end
 end
-
-
-# se o buffet_admin nao tiver um buffet ja cadastrado, mandar pra uma tela de cadastro
-# a unica opção dele deve ser: ou cadastrar o buffet, ou logout
-# se tentar usar outras rotas sem essa validação (buffet cadastrado) volta para a mesma tela de cadastro
-
-#cadastrar o buffet com o buffet.buffet_admin_id = current_user.id
-#validar com o uniqueness
-
-#redirecionar sempre para root
-#em root (application.html.erb), fazer a verificação
-  # verificação: Buffet.find(buffet_admin_id).any?
-#exibir um bloco de cadastro caso false (bloco específico)
-#exibir a aplicação normal caso true (yield)
