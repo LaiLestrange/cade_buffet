@@ -11,6 +11,7 @@ class CreateBuffets < ActiveRecord::Migration[7.1]
       t.string :city
       t.string :zip_code
       t.string :description
+      t.string :payment_methods
       t.references :buffet_admin, null: false, foreign_key: true
 
       t.timestamps

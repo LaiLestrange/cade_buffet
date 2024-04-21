@@ -19,6 +19,7 @@ RSpec.describe BuffetAdmin, type: :model do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
+        payment_methods: 'Pix, Dinheiro',
         buffet_admin_id: first_admin.id
       )
       second_admin = BuffetAdmin.create!(
@@ -37,6 +38,7 @@ RSpec.describe BuffetAdmin, type: :model do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: second_admin.id
       )
 
@@ -61,6 +63,7 @@ RSpec.describe BuffetAdmin, type: :model do
           city: 'Eventuais',
           zip_code: '11111-111',
           description: 'A descrição do primeiro buffet',
+          payment_methods: 'Pix, Dinheiro',
           buffet_admin_id: admin.id
         )
 
@@ -75,6 +78,7 @@ RSpec.describe BuffetAdmin, type: :model do
           city: 'Eventuais',
           zip_code: '22222-222',
           description: 'A descrição do secundo buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
 

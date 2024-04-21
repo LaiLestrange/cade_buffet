@@ -33,6 +33,7 @@ describe "BuffetAdmin opens the app" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: admin.id
       )
       admin.update(buffet_id: buffet.id)
@@ -96,6 +97,7 @@ describe "BuffetAdmin opens the app" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: admin.id
       )
       admin.update(buffet_id: buffet.id)

@@ -19,6 +19,7 @@ RSpec.describe Buffet, type: :model do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: first_admin.id
       )
 
@@ -39,6 +40,7 @@ RSpec.describe Buffet, type: :model do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
+        payment_methods: 'Pix, Dinheiro',
         buffet_admin_id: second_admin.id
       )
 
@@ -62,6 +64,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -83,6 +86,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -104,6 +108,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -125,6 +130,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -146,6 +152,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -167,6 +174,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -188,6 +196,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -209,6 +218,7 @@ RSpec.describe Buffet, type: :model do
           city: '',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -230,6 +240,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq false
@@ -251,6 +262,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: '',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
         expect(buffet.valid?).to eq true
@@ -266,7 +278,8 @@ RSpec.describe Buffet, type: :model do
           state: 'BF',
           city: 'Eventuais',
           zip_code: '11222-333',
-          description: 'A descrição de um buffet'
+          description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro'
         )
         expect(buffet.valid?).to eq false
       end
@@ -290,6 +303,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
 
@@ -313,6 +327,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11222-333',
           description: 'A descrição de um buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
 
@@ -337,6 +352,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11111-111',
           description: 'A descrição do primeiro buffet',
+          payment_methods: 'Pix, Dinheiro',
           buffet_admin_id: first_admin.id
         )
 
@@ -357,6 +373,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '22222-222',
           description: 'A descrição do secundo buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: second_admin.id
         )
 
@@ -379,6 +396,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '11111-111',
           description: 'A descrição do primeiro buffet',
+          payment_methods: 'Pix, Dinheiro',
           buffet_admin_id: admin.id
         )
 
@@ -393,6 +411,7 @@ RSpec.describe Buffet, type: :model do
           city: 'Eventuais',
           zip_code: '22222-222',
           description: 'A descrição do secundo buffet',
+          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
           buffet_admin_id: admin.id
         )
 

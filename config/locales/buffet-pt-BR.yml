@@ -14,4 +14,5 @@ pt-BR:
         city: 'Cidade'
         zip_code: 'CEP'
         description: 'Descrição'
+        payment_methods: 'Métodos de Pagamento'
         buffet_admin_id: 'Administrador do Buffet'

@@ -20,6 +20,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: admin.id
       )
       admin.update(buffet_id: buffet.id)
@@ -45,6 +46,7 @@ describe "BuffetAdmin edits their Buffet" do
         expect(page).to have_field 'Estado', with: buffet.state
         expect(page).to have_field 'Cidade', with: buffet.city
         expect(page).to have_field 'CEP', with: buffet.zip_code
+        expect(page).to have_field 'Métodos de Pagamento', with: buffet.payment_methods
         expect(page).to have_button 'Atualizar Buffet'
       end
     end
@@ -79,6 +81,7 @@ describe "BuffetAdmin edits their Buffet" do
       click_on 'Editar Buffet'
       fill_in 'Nome Fantasia', with: 'Buffet Eventos'
       fill_in 'Descrição', with: 'Essa é uma descrição do Buffet, adicionada depois.'
+      fill_in 'Métodos de Pagamento', with: 'Cartão de Crédito, Cartão de Débito, Pix, Dinheiro'
       click_on 'Atualizar Buffet'
 
       #assert
@@ -86,6 +89,7 @@ describe "BuffetAdmin edits their Buffet" do
       expect(page).to have_content 'Buffet atualizado com sucesso!'
       expect(page).to have_content 'Buffet Eventos'
       expect(page).to have_content 'Essa é uma descrição do Buffet, adicionada depois.'
+      expect(page).to have_content 'Cartão de Crédito, Cartão de Débito, Pix, Dinheiro'
     end
 
     it 'and respecting validations' do
@@ -106,6 +110,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: admin.id
       )
       admin.update(buffet_id: buffet.id)
@@ -127,7 +132,7 @@ describe "BuffetAdmin edits their Buffet" do
       expect(page).to have_field 'Nome Fantasia', with: ''
     end
   end
-  context "INCOMPLETO #editing false" do
+  context "#editing false" do
     it "tries to see not owned buffet" do
       #arrange
       first_admin = BuffetAdmin.create!(
@@ -146,6 +151,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
+        payment_methods: 'Pix, Dinheiro',
         buffet_admin_id: first_admin.id
       )
       first_admin.update(buffet_id: first_buffet.id)
@@ -166,6 +172,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: second_admin.id
       )
       second_admin.update(buffet_id: second_buffet.id)
@@ -195,6 +202,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
+        payment_methods: 'Pix, Dinheiro',
         buffet_admin_id: first_admin.id
       )
       first_admin.update(buffet_id: first_buffet.id)
@@ -215,6 +223,7 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
+        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
         buffet_admin_id: second_admin.id
       )
       second_admin.update(buffet_id: second_buffet.id)
@@ -228,7 +237,7 @@ describe "BuffetAdmin edits their Buffet" do
       expect(current_path).to eq edit_buffet_path(first_buffet)
     end
 
-    it "tries to delete a Buffet" do
+    it "?? tries to delete a Buffet" do
       #arrange
       admin = BuffetAdmin.create!(
         name: 'Admin do Buffet',
@@ -256,7 +265,7 @@ describe "BuffetAdmin edits their Buffet" do
 
       #buffet.delete
       #COMO??? é pra habilitar a rota??? mas pra que se nao é pra ser feito??
-      
+
       last_buffet = Buffet.last
       expect(last_buffet).to eq buffet
     end

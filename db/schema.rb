@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
     t.string "city"
     t.string "zip_code"
     t.string "description"
+    t.string "payment_methods"
     t.integer "buffet_admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

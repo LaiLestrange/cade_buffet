@@ -57,7 +57,8 @@ class BuffetsController < ApplicationController
       :state,
       :city,
       :zip_code,
-      :description
-      )
+      :description,
+      :payment_methods
+    )
   end
 end
