@@ -8,7 +8,10 @@ class BuffetsController < ApplicationController
     end
   end
   def show
-    @buffet = Buffet.find(params[:id])
+    @buffet = Buffet.find(current_buffet_admin.buffet_id)
+    if params[:id].to_i != @buffet.id
+      redirect_to buffet_path(@buffet.id), notice: 'Veja o seu Buffet'
+    end
   end
   def new
     @buffet = Buffet.new
@@ -27,6 +30,9 @@ class BuffetsController < ApplicationController
 
   def edit
     @buffet = Buffet.find(current_buffet_admin.buffet_id)
+    if params[:id].to_i != @buffet.id
+      redirect_to edit_buffet_path(@buffet.id), notice: 'Edite o seu Buffet'
+    end
   end
 
   def update

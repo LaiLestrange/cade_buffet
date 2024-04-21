@@ -128,6 +128,55 @@ describe "BuffetAdmin edits their Buffet" do
     end
   end
   context "INCOMPLETO #editing false" do
+    it "tries to see not owned buffet" do
+      #arrange
+      first_admin = BuffetAdmin.create!(
+        name: 'Admin 1 do Buffet',
+        email: 'admin1@buffet.com',
+        password: 'buff3t'
+      )
+      first_buffet = Buffet.create!(
+        brand_name: 'Eventos 1 Buffet',
+        company_name: 'Buffet 1 de Eventos LTDA',
+        registration_number: '123456789',
+        phone_number: '11 11111-1111',
+        email: 'buffet1@buffet.com',
+        full_address: 'Rua dos Buffets, 11, Bairro dos Eventos',
+        state: 'BF',
+        city: 'Eventuais',
+        zip_code: '11111-111',
+        description: 'A descrição do primeiro buffet',
+        buffet_admin_id: first_admin.id
+      )
+      first_admin.update(buffet_id: first_buffet.id)
+
+      second_admin = BuffetAdmin.create!(
+        name: 'Admin 2 do Buffet',
+        email: 'admin2@buffet.com',
+        password: 'buff3t'
+      )
+      second_buffet = Buffet.create!(
+        brand_name: 'Eventos 2 Buffet',
+        company_name: 'Buffet 2 de Eventos LTDA',
+        registration_number: '234567891',
+        phone_number: '22 22222-2222',
+        email: 'buffet2@buffet.com',
+        full_address: 'Rua dos Buffets, 12, Bairro dos Eventos',
+        state: 'BF',
+        city: 'Eventuais',
+        zip_code: '22222-222',
+        description: 'A descrição do secundo buffet',
+        buffet_admin_id: second_admin.id
+      )
+      second_admin.update(buffet_id: second_buffet.id)
+      login_as first_admin, scope: :buffet_admin
+
+      #act
+      visit buffet_path(second_buffet)
+
+      #assert
+      expect(current_path).to eq buffet_path(first_buffet)
+    end
     it "tries to edit not owned buffet" do
       #arrange
       first_admin = BuffetAdmin.create!(
@@ -178,6 +227,39 @@ describe "BuffetAdmin edits their Buffet" do
       #assert
       expect(current_path).to eq edit_buffet_path(first_buffet)
     end
-    # tries to delete it??? how?
+
+    it "tries to delete a Buffet" do
+      #arrange
+      admin = BuffetAdmin.create!(
+        name: 'Admin do Buffet',
+        email: 'admin@buffet.com',
+        password: 'buff3t'
+      )
+      buffet = Buffet.create!(
+        brand_name: 'Eventos Buffet',
+        company_name: 'Buffet de Eventos LTDA',
+        registration_number: '123456789',
+        phone_number: '11 11111-1111',
+        email: 'buffet@buffet.com',
+        full_address: 'Rua dos Buffets, 11, Bairro dos Eventos',
+        state: 'BF',
+        city: 'Eventuais',
+        zip_code: '11111-111',
+        description: 'A descrição do primeiro buffet',
+        buffet_admin_id: admin.id
+      )
+
+      admin.update(buffet_id: buffet.id)
+      login_as admin, scope: :buffet_admin
+
+      visit root_path
+
+      #buffet.delete
+      #COMO??? é pra habilitar a rota??? mas pra que se nao é pra ser feito??
+      
+      last_buffet = Buffet.last
+      expect(last_buffet).to eq buffet
+    end
+
   end
 end

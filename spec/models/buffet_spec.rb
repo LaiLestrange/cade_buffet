@@ -319,7 +319,6 @@ RSpec.describe Buffet, type: :model do
         expect(buffet.valid?).to eq false
       end
     end
-
     context "uniqueness" do
       it 'false when registration_number is already in use' do
         first_admin = BuffetAdmin.create!(
@@ -403,5 +402,4 @@ RSpec.describe Buffet, type: :model do
     end
 
   end
-
 end
