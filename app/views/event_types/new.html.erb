@@ -1,0 +1,68 @@
+<h1>Cadastro de Evento</h1>
+
+<% if @event.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div id='new_event_type'>
+  <%= form_with model: @event do |f|%>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :menu %><br />
+      <%= f.text_area :menu %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location %><br />
+      <%= f.check_box :location %>
+    </div>
+
+    <div class="field">
+      <%= f.label :min_guests %><br />
+      <%= f.number_field :min_guests%>
+    </div>
+
+   <div class="field">
+      <%= f.label :max_guests %><br />
+      <%= f.number_field :max_guests%>
+    </div>
+
+    <div class="field">
+      <%= f.label :duration %><br />
+      <%= f.number_field :duration%>
+    </div>
+
+    <div class="field">
+      <%= f.label :event_option_ids, allow_label_click: true%><br />
+      <%= f.collection_check_boxes(:event_option_ids, @options, :id, :name, { multiple: true }) do |cb| %>
+        <%= cb.check_box %>
+        <%= cb.label %>
+      <% end %>
+    </div>
+
+
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+
+
+  <% end %>
+
+</div>

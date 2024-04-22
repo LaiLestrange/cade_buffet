@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# EventOption.create!(name: "Bar", description: "Serviço de bebida alcóolica durante o evento")
+# EventOption.create!(name: "Decoração", description: "Organização e decoração do espaço do evento")
+# EventOption.create!(name: "Valet", description: "Serviço de estacionamento durante o evento")

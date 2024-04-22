@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      event_type: 'Evento'
+    attributes:
+      event_type:
+        name: 'Nome'
+        description: 'Descrição'
+        menu: 'Cardápio'
+        location: 'Localização'
+        min_guests: 'Mínimo de Convidados'
+        max_guests: 'Máximo de Convidados'
+        duration: 'Duração'
+        event_option_id: '1: Opções do Evento'
+        event_option_ids: 'Opções do Evento'
+        event_option: '3: Opções do Evento'
+        event_options: '4: Opções do Evento'

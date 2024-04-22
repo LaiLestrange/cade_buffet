@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_043546) do
   create_table "buffet_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,6 +44,36 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_030813) do
     t.index ["buffet_admin_id"], name: "index_buffets_on_buffet_admin_id"
   end
 
+  create_table "event_details", force: :cascade do |t|
+    t.integer "event_option_id", null: false
+    t.integer "event_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_option_id"], name: "index_event_details_on_event_option_id"
+    t.index ["event_type_id"], name: "index_event_details_on_event_type_id"
+  end
+
+  create_table "event_options", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "menu"
+    t.boolean "location"
+    t.integer "min_guests"
+    t.integer "max_guests"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "buffet_admins", "buffets"
   add_foreign_key "buffets", "buffet_admins"
+  add_foreign_key "event_details", "event_options"
+  add_foreign_key "event_details", "event_types"
 end

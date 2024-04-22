@@ -1,0 +1,22 @@
+<% @events.each do |event| %>
+<div>
+  <h2><%= event.name %></h2>
+  <p><%= event.description %></p>
+  <p><%= event.menu %></p>
+  <p><%= "Você pode escolher a localização do evento!" if event.location %></p>
+  <p><%= "Localização {endereço do buffet}" unless event.location %></p>
+  <p>De <%= event.min_guests %> a  <%= event.max_guests %> convidados</p>
+  <p>Duração: <%= event.duration %>min</p>
+  <p>Serviços Inclusos:
+
+    <ul>
+      <% event.event_options.each do |evop| %>
+       <li><%= evop.name %></li>
+      <% end %>
+    </ul>
+  </p>
+</div>
+
+
+<% end %>
+

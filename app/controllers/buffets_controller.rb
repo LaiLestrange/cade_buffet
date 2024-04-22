@@ -8,6 +8,7 @@ class BuffetsController < ApplicationController
     end
   end
   def show
+    @events = EventType.all
     @buffet = Buffet.find(current_buffet_admin.buffet_id)
     if params[:id].to_i != @buffet.id
       redirect_to buffet_path(@buffet.id), notice: 'Veja o seu Buffet'
