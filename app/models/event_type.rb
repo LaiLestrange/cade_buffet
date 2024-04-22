@@ -1,4 +1,5 @@
 class EventType < ApplicationRecord
+  belongs_to :buffet
   has_many :event_details
   has_many :event_options, through: :event_details
 

@@ -1,5 +1,6 @@
 class Buffet < ApplicationRecord
   belongs_to :buffet_admin
+  has_many :event_types
   validates :brand_name,
             :company_name,
             :registration_number,

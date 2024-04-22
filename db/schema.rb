@@ -68,12 +68,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_043546) do
     t.integer "min_guests"
     t.integer "max_guests"
     t.integer "duration"
+    t.integer "buffet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["buffet_id"], name: "index_event_types_on_buffet_id"
   end
 
   add_foreign_key "buffet_admins", "buffets"
   add_foreign_key "buffets", "buffet_admins"
   add_foreign_key "event_details", "event_options"
   add_foreign_key "event_details", "event_types"
+  add_foreign_key "event_types", "buffets"
 end

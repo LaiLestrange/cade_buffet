@@ -8,6 +8,7 @@ class CreateEventTypes < ActiveRecord::Migration[7.1]
       t.integer :min_guests
       t.integer :max_guests
       t.integer :duration
+      t.references :buffet, null: false, foreign_key: true
 
       t.timestamps
     end

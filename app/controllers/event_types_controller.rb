@@ -9,6 +9,7 @@ class EventTypesController < ApplicationController
     buffet_id = current_buffet_admin.buffet.id
 
     @event = EventType.new(event_params)
+    @event.buffet_id = buffet_id
     if @event.save()
       redirect_to buffet_path(buffet_id), notice: 'Evento cadastrado com sucesso!'
     else
@@ -27,7 +28,7 @@ class EventTypesController < ApplicationController
       :min_guests,
       :max_guests,
       :duration,
-      event_option_ids: [],
+      event_option_ids: []
     )
   end
 
