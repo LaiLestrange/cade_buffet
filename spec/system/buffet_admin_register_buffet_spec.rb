@@ -160,7 +160,7 @@ describe "BuffetAdmin register Buffet" do
         expect(page).to have_content 'Cadastre seu Buffet'
     end
 
-    it 'tries to register a second buffet' do
+    it 'tries to register a second buffet' do 
       #arrange
       admin = BuffetAdmin.create!(
         name: "Administrador Errado",

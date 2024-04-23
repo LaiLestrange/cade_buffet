@@ -266,8 +266,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
       event = EventType.last
 
       #assert
-      expect(event.buffet_id).to eq first_buffet.id
-      expect(event.buffet_id).not_to eq second_buffet.id
+      expect(event.buffet.id).to eq first_buffet.id
+      expect(event.buffet.id).not_to eq second_buffet.id
     end
 
     # talvez aqui cabe um outro teste de dois admins,

@@ -242,7 +242,6 @@ describe "BuffetAdmin edits their Buffet" do
         buffet_admin_id: admin.id
       )
 
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       visit root_path

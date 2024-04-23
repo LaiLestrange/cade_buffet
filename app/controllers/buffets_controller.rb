@@ -11,7 +11,7 @@ class BuffetsController < ApplicationController
     @buffet = current_buffet_admin.buffet
     @events = EventType.where(buffet: @buffet)
     if params[:id].to_i != @buffet.id
-      redirect_to buffet_path(@buffet.id), notice: 'Veja o seu Buffet'
+      redirect_to buffet_path(@buffet), notice: 'Veja o seu Buffet'
     end
   end
   def new
@@ -23,8 +23,8 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_admin = current_buffet_admin
     if @buffet.save
-      current_buffet_admin.update(buffet_id: @buffet.id)
-      redirect_to buffet_path(@buffet.id), notice: "Buffet cadastrado com sucesso!"
+      current_buffet_admin.update(buffet: @buffet)
+      redirect_to buffet_path(@buffet), notice: "Buffet cadastrado com sucesso!"
     else
       redirect_to new_buffet_path, notice: "Cadastre seu Buffet"
     end
@@ -33,13 +33,13 @@ class BuffetsController < ApplicationController
   def edit
     @buffet = current_buffet_admin.buffet
     if params[:id].to_i != @buffet.id
-      redirect_to edit_buffet_path(@buffet.id), notice: 'Edite o seu Buffet'
+      redirect_to edit_buffet_path(@buffet), notice: 'Edite o seu Buffet'
     end
   end
 
   def update
     if @buffet.update(buffet_params)
-      redirect_to buffet_path(@buffet.id), notice: "Buffet atualizado com sucesso!"
+      redirect_to buffet_path(@buffet), notice: "Buffet atualizado com sucesso!"
     else
       flash.now[:notice] = "Não foi possível atualizar o Buffet!"
       render 'edit'
