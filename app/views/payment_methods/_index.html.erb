@@ -1,0 +1,9 @@
+<h1>Métodos de Pagamento</h1>
+
+<% @buffet.payment_methods.each do |pm| %>
+  <div>
+    <p><strong>Nome: </strong><%= pm.name %><br>
+    <strong>Detalhes: </strong><%= pm.details %></p>
+  </div>
+
+<% end %>

@@ -23,7 +23,6 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_admin = current_buffet_admin
     if @buffet.save
-      current_buffet_admin.update(buffet: @buffet)
       redirect_to buffet_path(@buffet), notice: "Buffet cadastrado com sucesso!"
     else
       redirect_to new_buffet_path, notice: "Cadastre seu Buffet"

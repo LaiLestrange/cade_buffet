@@ -18,7 +18,16 @@
       </p>
     </li>
   </ul>
-  <p><%= link_to 'Cadastrar Evento', new_event_type_path %></p>
+
+  <div id="payment_methods">
+    <p><%= link_to 'Cadastrar Método de Pagamento', new_payment_method_path %></p>
+     <%= render  "payment_methods/index" unless @buffet.payment_methods.blank? %>
+  </div>
 </div>
 
-<%= render  "event_types/index" %>
+
+<div id="events">
+  <p><%= link_to 'Cadastrar Evento', new_event_type_path %></p>
+  <%= render  "event_types/index"  unless @buffet.event_types.blank? %>
+</div>
+

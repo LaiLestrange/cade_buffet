@@ -1,0 +1,30 @@
+<h1>Cadastro de Método de Pagamento</h1>
+
+<% if @payment_method.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @payment_method.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div id='new_payment_method'>
+  <%= form_with model: @payment_method do |f|%>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :details %><br />
+      <%= f.text_area :details %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>
+
+<%= link_to 'Voltar', buffet_path(@buffet) %>
