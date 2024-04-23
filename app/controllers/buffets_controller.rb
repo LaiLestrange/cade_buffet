@@ -8,7 +8,7 @@ class BuffetsController < ApplicationController
     end
   end
   def show
-    @buffet = Buffet.find(current_buffet_admin.buffet_id)
+    @buffet = current_buffet_admin.buffet
     @events = EventType.where(buffet: @buffet)
     if params[:id].to_i != @buffet.id
       redirect_to buffet_path(@buffet.id), notice: 'Veja o seu Buffet'
@@ -16,11 +16,12 @@ class BuffetsController < ApplicationController
   end
   def new
     @buffet = Buffet.new
+    @buffet.buffet_admin = current_buffet_admin
   end
 
   def create
     @buffet = Buffet.new(buffet_params)
-    @buffet.buffet_admin_id = current_buffet_admin.id
+    @buffet.buffet_admin = current_buffet_admin
     if @buffet.save
       current_buffet_admin.update(buffet_id: @buffet.id)
       redirect_to buffet_path(@buffet.id), notice: "Buffet cadastrado com sucesso!"
@@ -30,7 +31,7 @@ class BuffetsController < ApplicationController
   end
 
   def edit
-    @buffet = Buffet.find(current_buffet_admin.buffet_id)
+    @buffet = current_buffet_admin.buffet
     if params[:id].to_i != @buffet.id
       redirect_to edit_buffet_path(@buffet.id), notice: 'Edite o seu Buffet'
     end
@@ -58,8 +59,8 @@ class BuffetsController < ApplicationController
       :state,
       :city,
       :zip_code,
-      :description,
-      :payment_methods
+      :description
+      #, :payment_methods
     )
   end
 end

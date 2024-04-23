@@ -20,10 +20,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -46,7 +44,6 @@ describe "BuffetAdmin edits their Buffet" do
         expect(page).to have_field 'Estado', with: buffet.state
         expect(page).to have_field 'Cidade', with: buffet.city
         expect(page).to have_field 'CEP', with: buffet.zip_code
-        expect(page).to have_field 'Métodos de Pagamento', with: buffet.payment_methods
         expect(page).to have_button 'Atualizar Buffet'
       end
     end
@@ -68,9 +65,8 @@ describe "BuffetAdmin edits their Buffet" do
         state: 'EV',
         city: 'Eventual',
         zip_code: '33333-333',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -81,7 +77,6 @@ describe "BuffetAdmin edits their Buffet" do
       click_on 'Editar Buffet'
       fill_in 'Nome Fantasia', with: 'Buffet Eventos'
       fill_in 'Descrição', with: 'Essa é uma descrição do Buffet, adicionada depois.'
-      fill_in 'Métodos de Pagamento', with: 'Cartão de Crédito, Cartão de Débito, Pix, Dinheiro'
       click_on 'Atualizar Buffet'
 
       #assert
@@ -89,7 +84,6 @@ describe "BuffetAdmin edits their Buffet" do
       expect(page).to have_content 'Buffet atualizado com sucesso!'
       expect(page).to have_content 'Buffet Eventos'
       expect(page).to have_content 'Essa é uma descrição do Buffet, adicionada depois.'
-      expect(page).to have_content 'Cartão de Crédito, Cartão de Débito, Pix, Dinheiro'
     end
 
     it 'and respecting validations' do
@@ -110,10 +104,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -151,10 +143,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: first_admin.id
+        buffet_admin: first_admin
       )
-      first_admin.update(buffet_id: first_buffet.id)
 
       second_admin = BuffetAdmin.create!(
         name: 'Admin 2 do Buffet',
@@ -172,10 +162,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: second_admin.id
+        buffet_admin: second_admin
       )
-      second_admin.update(buffet_id: second_buffet.id)
       login_as first_admin, scope: :buffet_admin
 
       #act
@@ -202,10 +190,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: first_admin.id
+        buffet_admin: first_admin
       )
-      first_admin.update(buffet_id: first_buffet.id)
 
       second_admin = BuffetAdmin.create!(
         name: 'Admin 2 do Buffet',
@@ -223,10 +209,8 @@ describe "BuffetAdmin edits their Buffet" do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: second_admin.id
+        buffet_admin: second_admin
       )
-      second_admin.update(buffet_id: second_buffet.id)
 
       login_as first_admin, scope: :buffet_admin
 

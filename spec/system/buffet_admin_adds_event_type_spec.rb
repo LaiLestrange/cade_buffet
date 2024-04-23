@@ -32,10 +32,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -80,8 +78,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
       options = [
         EventOption.create!(
@@ -97,7 +94,6 @@ describe "BuffetAdmin adds EventType to Buffet" do
           description: "Serviço de estacionamento durante o evento"
         ),
       ]
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -153,8 +149,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
       options = [
         EventOption.create!(
@@ -170,7 +165,6 @@ describe "BuffetAdmin adds EventType to Buffet" do
           description: "Serviço de estacionamento durante o evento"
         ),
       ]
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act
@@ -228,10 +222,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: first_admin.id
+        buffet_admin: first_admin
       )
-      first_admin.update(buffet_id: first_buffet.id)
       second_admin = BuffetAdmin.create!(
         name: 'Admin 2 do Buffet',
         email: 'admin2@buffet.com',
@@ -248,10 +240,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: second_admin.id
+        buffet_admin: second_admin
       )
-      second_admin.update(buffet_id: second_buffet.id)
       login_as first_admin, scope: :buffet_admin
 
       #act
@@ -279,6 +269,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
       expect(event.buffet_id).to eq first_buffet.id
       expect(event.buffet_id).not_to eq second_buffet.id
     end
-  end
 
+    # talvez aqui cabe um outro teste de dois admins,
+      # cada buffet com uns 2 eventos, e só vê cada um no seu cada qual
+  end
 end

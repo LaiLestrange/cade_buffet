@@ -19,8 +19,7 @@ RSpec.describe BuffetAdmin, type: :model do
         city: 'Eventuais',
         zip_code: '11111-111',
         description: 'A descrição do primeiro buffet',
-        payment_methods: 'Pix, Dinheiro',
-        buffet_admin_id: first_admin.id
+        buffet_admin: first_admin
       )
       second_admin = BuffetAdmin.create!(
         name: 'Admin 2 do Buffet',
@@ -38,8 +37,7 @@ RSpec.describe BuffetAdmin, type: :model do
         city: 'Eventuais',
         zip_code: '22222-222',
         description: 'A descrição do secundo buffet',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: second_admin.id
+        buffet_admin: second_admin
       )
 
       expect(second_buffet.valid?).to eq true
@@ -63,8 +61,7 @@ RSpec.describe BuffetAdmin, type: :model do
           city: 'Eventuais',
           zip_code: '11111-111',
           description: 'A descrição do primeiro buffet',
-          payment_methods: 'Pix, Dinheiro',
-          buffet_admin_id: admin.id
+          buffet_admin: admin
         )
 
         second_buffet = Buffet.new(
@@ -78,8 +75,7 @@ RSpec.describe BuffetAdmin, type: :model do
           city: 'Eventuais',
           zip_code: '22222-222',
           description: 'A descrição do secundo buffet',
-          payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-          buffet_admin_id: admin.id
+          buffet_admin: admin
         )
 
         expect(second_buffet.valid?).to eq false

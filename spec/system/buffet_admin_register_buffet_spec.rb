@@ -16,13 +16,13 @@ describe "BuffetAdmin register Buffet" do
         click_on 'Entrar'
       end
       click_on 'Criar uma conta'
-      within 'form' do
+      #within 'form' do
         fill_in 'Nome', with: buffet_admin.name
         fill_in 'E-mail', with: buffet_admin.email
         fill_in 'Senha', with: buffet_admin.password
         fill_in 'Confirme sua senha', with: buffet_admin.password
         click_on 'Criar conta'
-      end
+      #end
 
       #assert
       expect(current_path).to eq new_buffet_path
@@ -39,7 +39,6 @@ describe "BuffetAdmin register Buffet" do
         expect(page).to have_field 'Estado'
         expect(page).to have_field 'Cidade'
         expect(page).to have_field 'CEP'
-        expect(page).to have_field 'Métodos de Pagamento'
         expect(page).to have_button 'Criar Buffet'
       end
     end
@@ -65,7 +64,6 @@ describe "BuffetAdmin register Buffet" do
         fill_in 'Estado', with: 'EV'
         fill_in 'Cidade', with: 'Eventualidade'
         fill_in 'CEP', with: '34567-891'
-        fill_in 'Métodos de Pagamento', with: 'Pix, Cartão de Crédito, Dinheiro'
         click_on 'Criar Buffet'
       end
 
@@ -83,7 +81,6 @@ describe "BuffetAdmin register Buffet" do
       expect(page).to have_content 'Eventualidade'
       expect(page).to have_content '34567-891'
       expect(page).to have_content 'eventos@buffet.com'
-      expect(page).to have_content 'Pix, Cartão de Crédito, Dinheiro'
     end
 
     it 'and has access to other routes' do
@@ -104,11 +101,8 @@ describe "BuffetAdmin register Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
-
       login_as admin, scope: :buffet_admin
 
       #act
@@ -158,7 +152,6 @@ describe "BuffetAdmin register Buffet" do
           fill_in 'Estado', with: 'EV'
           fill_in 'Cidade', with: 'Eventualidade'
           fill_in 'CEP', with: '34567-891'
-          fill_in 'Métodos de Pagamento', with: 'Pix, Cartão de Crédito, Dinheiro'
           click_on 'Criar Buffet'
         end
 
@@ -186,11 +179,9 @@ describe "BuffetAdmin register Buffet" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
 
-      admin.update(buffet_id: buffet.id)
       login_as admin, scope: :buffet_admin
 
       #act

@@ -33,10 +33,8 @@ describe "BuffetAdmin opens the app" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
 
       #act
       visit root_path
@@ -97,10 +95,8 @@ describe "BuffetAdmin opens the app" do
         city: 'Eventual',
         zip_code: '33333-333',
         description: 'Esse é um Buffet de Eventos',
-        payment_methods: 'Pix, Cartão de Crédito, Dinheiro',
-        buffet_admin_id: admin.id
+        buffet_admin: admin
       )
-      admin.update(buffet_id: buffet.id)
 
       login_as admin, scope: :buffet_admin
 
