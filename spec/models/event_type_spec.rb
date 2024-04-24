@@ -38,7 +38,6 @@ RSpec.describe EventType, type: :model do
         event_options: options,
         buffet: buffet
       )
-
       #Act & Assert
       expect(event.valid?).to eq true
 
@@ -638,5 +637,6 @@ RSpec.describe EventType, type: :model do
         end
       end
     end
+
   end
 end

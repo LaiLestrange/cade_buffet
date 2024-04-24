@@ -2,7 +2,7 @@
 
 <% @events.each do |event| %>
 <div>
-  <h2><%= event.name %></h2>
+  <h2><%= link_to event.name, event_type_path(event) %></h2>
   <p><%= event.description %></p>
   <p><%= event.menu %></p>
   <p><%= "Você pode escolher a localização do evento!" if event.location %></p>

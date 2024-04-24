@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      event_price: 'Preço'
+    attributes:
+      event_price:
+        min_price: 'Preço Inicial'
+        extra_guest_fee: 'Taxa por convidado extra'
+        overtime_fee: 'Taxa por hora extra'
+        weekend_schedule: 'Preço de Final de Semana'
+        event_price: 'Preço'

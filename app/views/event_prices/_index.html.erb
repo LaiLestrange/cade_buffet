@@ -1,0 +1,13 @@
+<h1>Preços Cadastrados</h1>
+
+<% @prices.each do |price| %>
+  <br>
+  <strong>Preço Inicial: </strong><%= number_to_currency(price.min_price, precision: 2, separator: ',', delimiter: '.') %><br>
+  <%= number_to_currency(price.extra_guest_fee, precision: 2, separator: ',', delimiter: '.') %><strong> por convidado extra</strong><br>
+  <%= number_to_currency(price.overtime_fee, precision: 2, separator: ',', delimiter: '.') %><strong> por hora extra</strong><br>
+  debug: <br>
+  Final de semana: <%= price.weekend_schedule %><br>
+  Evento relacionado: <%= price.event_type.name %><br>
+
+<% end %>
+

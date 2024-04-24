@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_043929) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_005619) do
   create_table "buffet_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -61,6 +61,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_043929) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "event_prices", force: :cascade do |t|
+    t.decimal "min_price"
+    t.decimal "extra_guest_fee"
+    t.decimal "overtime_fee"
+    t.boolean "weekend_schedule"
+    t.integer "event_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_type_id"], name: "index_event_prices_on_event_type_id"
+  end
+
   create_table "event_types", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -72,7 +83,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_043929) do
     t.integer "buffet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_price_id"
     t.index ["buffet_id"], name: "index_event_types_on_buffet_id"
+    t.index ["event_price_id"], name: "index_event_types_on_event_price_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -89,6 +102,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_043929) do
   add_foreign_key "buffets", "payment_methods", column: "payment_methods_id"
   add_foreign_key "event_details", "event_options"
   add_foreign_key "event_details", "event_types"
+  add_foreign_key "event_prices", "event_types"
   add_foreign_key "event_types", "buffets"
+  add_foreign_key "event_types", "event_prices"
   add_foreign_key "payment_methods", "buffets"
 end

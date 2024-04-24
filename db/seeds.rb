@@ -8,12 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-  # EventOption.create!( name: "SEED Bar",
-  #                      description: "SEED Serviço de bebida alcóolica durante o evento")
-  # EventOption.create!( name: "SEED Decoração",
-  #                      description: "SEED Organização e decoração do espaço do evento" )
-  # EventOption.create!( name: "SEED Valet",
-  #                     description: "SEED Serviço de estacionamento durante o evento")
+  EventOption.create!( name: "SEED Bar",
+                       description: "SEED Serviço de bebida alcóolica durante o evento")
+  EventOption.create!( name: "SEED Decoração",
+                       description: "SEED Organização e decoração do espaço do evento" )
+  EventOption.create!( name: "SEED Valet",
+                      description: "SEED Serviço de estacionamento durante o evento")
 
   # PaymentMethod.create!( name: "SEED Pix",
   #                        details: "Chave pix: 548465456487")

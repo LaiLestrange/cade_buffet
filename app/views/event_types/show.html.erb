@@ -1,0 +1,36 @@
+<h1><%= @event.name %></h1>
+<p><%= @event.description %></p>
+
+<h2>Confira os detalhes:</h2>
+
+<div>
+  <h3>Opções de Cardápio:</h3>
+  <p><%= @event.menu %></p>
+
+  <h3>Localização:</h3>
+  <p>
+    <% if @event.location %>
+      <%= "Você pode escolher a localização do evento!" %>
+    <% else %>
+      <%= @event.buffet.full_address %> <br>
+      <%= @event.buffet.city %> | <%= @event.buffet.state %> <br>
+      <%= @event.buffet.zip_code %>
+    <% end %>
+  </p>
+
+  <h3>Outros detalhes:</h3>
+  <p>De <%= @event.min_guests %> a  <%= @event.max_guests %> convidados</p>
+  <p>Duração: <%= @event.duration %>min</p>
+  <p>Serviços Inclusos:
+    <ul>
+      <% @event.event_options.each do |evop| %>
+       <li><%= evop.name %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p><%= link_to 'Adicionar Preço', new_event_price_path(event: @event.id) if @event.event_prices.count < 2%></p>
+   <%= render 'event_prices/index' unless @event.event_prices.blank? %>
+
+
+</div>

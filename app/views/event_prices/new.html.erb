@@ -1,0 +1,41 @@
+<h1>Adicionar Preço ao Evento</h1>
+
+<% if @price.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @price.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div id='new_event_price'>
+  <%= form_with model: @price do |f|%>
+    <div class="field">
+      <%= f.label :min_price %><br />
+      <%= f.number_field :min_price, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :extra_guest_fee %><br />
+      <%= f.number_field :extra_guest_fee %>
+    </div>
+
+    <div class="field">
+      <%= f.label :overtime_fee %><br />
+      <%= f.number_field :overtime_fee %>
+    </div>
+
+    <div class="field">
+      <%= f.label :weekend_schedule %><br />
+      <%= f.check_box :weekend_schedule %>
+    </div>
+
+    <%= hidden_field_tag(:event, @event.id) %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+</div>
