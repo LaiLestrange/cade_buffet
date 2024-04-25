@@ -29,7 +29,7 @@
     </ul>
   </p>
 
-  <p><%= link_to 'Adicionar Preço', new_event_price_path(event: @event.id) if @event.event_prices.count < 2%></p>
+  <p><%= link_to 'Adicionar Preço', new_event_price_path(event: @event.id) if @event.event_prices.count < 2 && current_buffet_admin %></p>
    <%= render 'event_prices/index' unless @event.event_prices.blank? %>
 
 

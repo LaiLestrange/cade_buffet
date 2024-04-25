@@ -1,8 +1,14 @@
 class EventTypesController < ApplicationController
-  before_action :authenticate_buffet_admin!
+  before_action :authenticate_buffet_admin!, only: [:new, :create]
   before_action :get_options, only: [:new, :create]
   def show
-    @event = EventType.find(params[:id])
+    id = params[:id]
+    if buffet_admin_signed_in?
+      if !current_buffet_admin.buffet.event_types.ids.include?(id.to_i)
+        redirect_to buffet_path(current_buffet_admin.buffet), notice: "Não foi possível visualizar esse evento!"
+      end
+    end
+    @event = EventType.find(id)
     @prices = @event.event_prices
   end
   def new
