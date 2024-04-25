@@ -110,6 +110,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
        fill_in 'Mínimo de Convidados', with: '10'
        fill_in 'Máximo de Convidados', with: '50'
        fill_in 'Duração', with: '120'
+       attach_file 'Fotos', Rails.root.join('spec', 'support', 'foto_evento.jpg')
        check options[0].name
        check options[2].name
        click_on 'Criar Evento'
@@ -117,6 +118,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
 
       #assert
       expect(current_path).to eq buffet_path buffet.id
+      expect(page).to have_css('img[src*="foto_evento.jpg"]')
       expect(page).to have_content 'Evento cadastrado com sucesso!'
       expect(page).to have_content 'Tipo de Evento'
       expect(page).to have_content 'Descrição do evento, propaganda, etc'
@@ -128,8 +130,8 @@ describe "BuffetAdmin adds EventType to Buffet" do
       expect(page).to have_content 'Bar'
       expect(page).to have_content 'Valet'
     end
-
   end
+
   context "Unexpected behaviour" do
     it "and leaves out missing information" do
       #arrange
@@ -269,7 +271,6 @@ describe "BuffetAdmin adds EventType to Buffet" do
       expect(event.buffet.id).to eq first_buffet.id
       expect(event.buffet.id).not_to eq second_buffet.id
     end
-
     it "tries to see event_type of not owned buffet" do
       #arrange
       options = [

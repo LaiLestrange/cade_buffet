@@ -47,6 +47,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :photos %><br />
+      <%= f.file_field :photos, multiple: true%>
+    </div>
+
+    <div class="field">
       <%= f.label :event_option_ids, allow_label_click: true%><br />
       <%= f.collection_check_boxes(:event_option_ids, @options, :id, :name, { multiple: true }) do |cb| %>
         <%= cb.check_box %>
@@ -54,15 +59,9 @@
       <% end %>
     </div>
 
-
-
-
     <div class="actions">
       <%= f.submit %>
     </div>
-
-
-
   <% end %>
 
 </div>

@@ -38,6 +38,7 @@ class EventTypesController < ApplicationController
       :min_guests,
       :max_guests,
       :duration,
+      photos: [],
       event_option_ids: []
     )
   end

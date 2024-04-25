@@ -4,6 +4,11 @@
 <div>
   <h2><%= link_to event.name, event_type_path(event) %></h2>
   <p><%= event.description %></p>
+
+  <div id="photo">
+    <%= image_tag event.photos.first if event.photos.count >= 1 %>
+  </div>
+
   <p><%= event.menu %></p>
   <p><%= "Você pode escolher a localização do evento!" if event.location %></p>
   <p><%= "Localização {endereço do buffet}" unless event.location %></p>

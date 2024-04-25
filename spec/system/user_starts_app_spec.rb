@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "User opens the app" do
-  context 'Authentication' do
+  context 'First Steps' do
     it "and is not logged in" do
       #arrange
       options = [
@@ -68,7 +68,7 @@ describe "User opens the app" do
       expect(page).to have_content second_buffet.state
     end
 
-    it 'and chooses a buffet to see more of' do
+    it 'and chooses a buffet to see the details' do
       #arrange
       admin = BuffetAdmin.create!(
         name: "Administrador de Buffet",
@@ -133,7 +133,7 @@ describe "User opens the app" do
       expect(page).not_to have_content buffet.registration_number
     end
 
-    it 'and tries to see the details of an event' do
+    it 'and sees the details of an event' do
        #arrange
        admin = BuffetAdmin.create!(
         name: "Administrador de Buffet",
@@ -188,6 +188,8 @@ describe "User opens the app" do
         details: 'Método de Pagamento que o Buffet pode oferecer',
         buffet: buffet
       )
+
+      
       #act
       visit root_path
       click_on buffet.brand_name

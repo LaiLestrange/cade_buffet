@@ -1,6 +1,14 @@
 <h1><%= @event.name %></h1>
 <p><%= @event.description %></p>
 
+<div id="photos">
+<% @event.photos.each do |photo| %>
+  <div id="photo">
+    <%= image_tag photo %>
+  </div>
+<% end %>
+</div>
+
 <h2>Confira os detalhes:</h2>
 
 <div>
