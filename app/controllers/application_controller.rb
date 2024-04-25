@@ -14,13 +14,13 @@ class ApplicationController < ActionController::Base
     if missing_buffet
       unless current_path == new_buffet_path || current_path == destroy_buffet_admin_session_path || current_path == buffets_path
         @buffet = Buffet.new
-        # @aqui[:quem_eh_buffet] = @buffet
+
         redirect_to new_buffet_path, notice: 'Cadastre seu Buffet'
       end
     else
       if buffet_admin_signed_in?
         @buffet = current_buffet_admin.buffet
-        # @aqui[:quem_eh_buffet] = @buffet
+        
         if current_path == new_buffet_path
           redirect_to root_path, notice: 'Já possui um Buffet cadastrado!'
         end

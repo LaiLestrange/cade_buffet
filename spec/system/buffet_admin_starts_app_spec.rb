@@ -48,7 +48,7 @@ describe "BuffetAdmin opens the app" do
       end
 
       #assert
-      expect(current_path).to eq root_path
+      expect(current_path).to eq buffet_path(buffet)
       expect(page).to have_content "Olá, #{admin.name}"
       expect(page).to have_button "Sair"
     end

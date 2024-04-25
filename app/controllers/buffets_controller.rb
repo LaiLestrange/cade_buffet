@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-  before_action :authenticate_buffet_admin!, only: [:show, :edit, :update, :new, :create]
+  before_action :authenticate_buffet_admin!, only: [:edit, :update, :new, :create]
 
   def index
     if buffet_admin_signed_in? && current_buffet_admin.buffet.blank?
@@ -8,7 +8,11 @@ class BuffetsController < ApplicationController
     end
   end
   def show
-    @buffet = current_buffet_admin.buffet
+    if buffet_admin_signed_in?
+      @buffet = current_buffet_admin.buffet
+    else
+      @buffet = Buffet.find(params[:id])
+    end
     @events = EventType.where(buffet: @buffet)
     if params[:id].to_i != @buffet.id
       redirect_to buffet_path(@buffet), notice: 'Veja o seu Buffet'
@@ -59,7 +63,6 @@ class BuffetsController < ApplicationController
       :city,
       :zip_code,
       :description
-      #, :payment_methods
     )
   end
 end

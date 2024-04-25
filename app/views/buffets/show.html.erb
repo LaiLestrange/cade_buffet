@@ -3,10 +3,12 @@
 
 <div>
   <h3>Informações:</h3>
-  <p><%= link_to 'Editar Buffet', edit_buffet_path %></p>
+  <p><%= link_to 'Editar Buffet', edit_buffet_path if current_buffet_admin %></p>
   <ul>
     <li> <strong>Nome de Registro: </strong> <%= @buffet.company_name %></li>
-    <li> <strong>CNPJ: </strong> <%= @buffet.registration_number %></li>
+    <% if current_buffet_admin %>
+      <li> <strong>CNPJ: </strong> <%= @buffet.registration_number %></li>
+    <% end %>
 
     <li> <strong>Telefone: </strong> <%= @buffet.phone_number %></li>
     <li> <strong>E-mail: </strong> <%= @buffet.email %></li>
@@ -20,14 +22,14 @@
   </ul>
 
   <div id="payment_methods">
-    <p><%= link_to 'Cadastrar Método de Pagamento', new_payment_method_path %></p>
+    <p><%= link_to 'Cadastrar Método de Pagamento', new_payment_method_path if current_buffet_admin %></p>
      <%= render  "payment_methods/index" unless @buffet.payment_methods.blank? %>
   </div>
 </div>
 
 
 <div id="events">
-  <p><%= link_to 'Cadastrar Evento', new_event_type_path %></p>
+  <p><%= link_to 'Cadastrar Evento', new_event_type_path if current_buffet_admin %></p>
   <%= render  "event_types/index"  unless @buffet.event_types.blank? %>
 </div>
 

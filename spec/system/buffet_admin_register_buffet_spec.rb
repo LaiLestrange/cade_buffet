@@ -160,7 +160,7 @@ describe "BuffetAdmin register Buffet" do
         expect(page).to have_content 'Cadastre seu Buffet'
     end
 
-    it 'tries to register a second buffet' do 
+    it 'tries to register a second buffet' do
       #arrange
       admin = BuffetAdmin.create!(
         name: "Administrador Errado",
@@ -188,7 +188,7 @@ describe "BuffetAdmin register Buffet" do
       visit new_buffet_path
 
       #assert
-      expect(current_path).to eq root_path
+      expect(current_path).to eq buffet_path(buffet)
       expect(page).to have_content 'Já possui um Buffet cadastrado'
     end
   end

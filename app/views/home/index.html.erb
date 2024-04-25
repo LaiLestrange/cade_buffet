@@ -1,3 +1,8 @@
+<h1>Buffets</h1>
+<div>
+  <% @buffets.each do |buffet| %>
+    <h3><%= link_to buffet.brand_name, buffet_path(buffet) %></h3>
+    <p><%= buffet.city %> - <%= buffet.state %></p>
+  <% end %>
+</div>
 
-#possivel dashboard com informações basicas de buffets cadastrados, quando logged out<br>
-#possivel dashboard com informações basicas do buffet, ultimos pedidos, etc, quando logged in
