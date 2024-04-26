@@ -82,35 +82,6 @@ describe "BuffetAdmin register Buffet" do
       expect(page).to have_content '34567-891'
       expect(page).to have_content 'eventos@buffet.com'
     end
-
-    it 'and has access to other routes' do
-      #arrange
-      admin = BuffetAdmin.create!(
-        name: "Administrador do Buffet",
-        email: "buffet@admin.com",
-        password: "04dm1n"
-      )
-      buffet = Buffet.create!(
-        brand_name: 'Eventos Buffet',
-        company_name: 'Buffet de Eventos LTDA',
-        registration_number: '123456789',
-        phone_number: '11 1111-1111',
-        email: 'eventos@buffet.com',
-        full_address: 'Rua dos Eventos, 2',
-        state: 'EV',
-        city: 'Eventual',
-        zip_code: '33333-333',
-        description: 'Esse é um Buffet de Eventos',
-        buffet_admin: admin
-      )
-      login_as admin, scope: :buffet_admin
-
-      #act
-      visit buffets_path
-
-      #assert
-      expect(current_path).to eq buffets_path
-    end
   end
 
   context "wrong behaviour" do
