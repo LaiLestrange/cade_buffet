@@ -12,6 +12,15 @@
   <body>
     <header>
       <h1><%= link_to 'Cadê Buffet?', root_path %></h1>
+      <% unless current_buffet_admin %>
+        <%= form_with url: search_path, method: :get do %>
+          <%= label_tag :q, 'Procurar Buffets:' %>
+          <%= text_field_tag :q %>
+          <%= submit_tag 'Pesquisar' %>
+        <% end %>
+      <% end %>
+
+
       <% if buffet_admin_signed_in? %>
         <div>
           <% name_to_show = current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %>

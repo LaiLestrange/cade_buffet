@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
     else
       if buffet_admin_signed_in?
         @buffet = current_buffet_admin.buffet
-        
         if current_path == new_buffet_path
           redirect_to root_path, notice: 'Já possui um Buffet cadastrado!'
         end

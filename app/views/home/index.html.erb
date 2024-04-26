@@ -1,8 +1,3 @@
 <h1>Buffets</h1>
-<div>
-  <% @buffets.each do |buffet| %>
-    <h3><%= link_to buffet.brand_name, buffet_path(buffet) %></h3>
-    <p><%= buffet.city %> - <%= buffet.state %></p>
-  <% end %>
-</div>
 
+<%= render  'index' %>

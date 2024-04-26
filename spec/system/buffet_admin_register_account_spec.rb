@@ -13,7 +13,7 @@ describe "BuffetAdmin signs_up" do
 
     #assert
     expect(page).to have_content 'Criar uma conta'
-    within 'form' do
+    within '#new_buffet_admin_account' do
       expect(page).to have_field 'Nome'
       expect(page).to have_field 'E-mail'
       expect(page).to have_field 'Senha'
@@ -35,7 +35,7 @@ describe "BuffetAdmin signs_up" do
       click_on 'Entrar'
     end
     click_on 'Criar uma conta'
-    within 'form' do
+    within '#new_buffet_admin_account' do
       fill_in 'Nome', with: new_user.name
       fill_in 'E-mail', with: new_user.email
       fill_in 'Senha', with: new_user.password
@@ -63,7 +63,7 @@ describe "BuffetAdmin signs_up" do
       click_on 'Entrar'
     end
     click_on 'Criar uma conta'
-    within 'form' do
+    within '#new_buffet_admin_account' do
       fill_in 'Nome', with: new_user.name
       fill_in 'E-mail', with: new_user.email
       fill_in 'Senha', with: new_user.password

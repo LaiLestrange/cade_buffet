@@ -7,6 +7,10 @@ class HomeController < ApplicationController
       @buffets = Buffet.all
     end
   end
-
-
+  def search
+    buffets = Buffet.where('brand_name like ? OR city like ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    events = EventType.where('name like ?', "%#{params[:q]}%")
+    buffets_ids = buffets.map(&:id) + events.map{|event| event.buffet.id}
+    @buffets = Buffet.where(id: buffets_ids).sort_by(&:brand_name)
+  end
 end

@@ -43,7 +43,7 @@ describe "BuffetAdmin opens the app" do
       end
       fill_in 'E-mail', with: admin.email
       fill_in 'Senha', with: admin.password
-      within 'form' do
+      within '#new_buffet_admin_session' do
         click_on 'Entrar'
       end
 

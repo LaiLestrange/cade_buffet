@@ -1,0 +1,6 @@
+  <% @buffets.each do |buffet| %>
+    <div>
+      <h3><%= link_to buffet.brand_name, buffet_path(buffet) %></h3>
+      <p><%= buffet.city %> | <%= buffet.state %></p>
+    </div>
+  <% end %>

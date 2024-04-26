@@ -23,7 +23,8 @@
 seed_admin =  BuffetAdmin.create!(
   name: "SEEDAdministrador de Buffet",
   email: "SEED@buffet.com",
-  password: "8uff374dm1n")
+  password: "8uff374dm1n"
+  )
 seed_buffet = Buffet.create!(
   brand_name: 'SEED Eventos Buffet',
   company_name: 'SEED Buffet de Eventos LTDA',

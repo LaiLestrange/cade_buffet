@@ -1,5 +1,5 @@
-<h2>Log in</h2>
-
+<h2>Entrar</h2>
+<div id="new_buffet_admin_session">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -19,8 +19,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Entrar" %>
   </div>
 <% end %>
 
 <%= render "buffet_admins/shared/links" %>
+</div>
