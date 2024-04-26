@@ -5,6 +5,10 @@ class BuffetsController < ApplicationController
     if buffet_admin_signed_in? && current_buffet_admin.buffet.blank?
       @buffet = Buffet.new
       redirect_to new_buffet_path, notice: "Cadastre seu Buffet"
+    else
+      if buffet_admin_signed_in?
+        redirect_to buffet_path(current_buffet_admin.buffet)
+      end
     end
   end
   def show
