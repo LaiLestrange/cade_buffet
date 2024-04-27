@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :admin_has_buffet
+  before_action :is_customer
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :social_security_number])
   end
 
   def admin_has_buffet
@@ -23,6 +24,15 @@ class ApplicationController < ActionController::Base
         if current_path == new_buffet_path
           redirect_to root_path, notice: 'Já possui um Buffet cadastrado!'
         end
+      end
+    end
+  end
+
+  def is_customer
+    current_path = url_for(only_path: true)
+    if customer_signed_in?
+      if current_path == new_customer_session_path || current_path == new_buffet_admin_session_path
+        redirect_to root_path, notice: "Você não possui autorização para essa ação!"
       end
     end
   end

@@ -30,7 +30,13 @@
           <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
         </div>
       <% else %>
-        <%= link_to 'Entrar', new_buffet_admin_session_path %>
+        <% if customer_signed_in? %>
+          <p>Olá, <%= current_customer.name %></p>
+           <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Entrar como Administrador', new_buffet_admin_session_path %>
+          <%= link_to 'Entrar como Cliente', new_customer_session_path %>
+        <% end %>
       <% end %>
     </header>
     <div>

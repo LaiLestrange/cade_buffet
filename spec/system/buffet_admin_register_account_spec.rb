@@ -7,7 +7,7 @@ describe "BuffetAdmin signs_up" do
     #act
     visit root_path
     within 'header'  do
-      click_on 'Entrar'
+      click_on 'Entrar como Administrador'
     end
     click_on 'Criar uma conta'
 
@@ -32,7 +32,7 @@ describe "BuffetAdmin signs_up" do
     #act
     visit root_path
     within 'header'  do
-      click_on 'Entrar'
+      click_on 'Entrar como Administrador'
     end
     click_on 'Criar uma conta'
     within '#new_buffet_admin_account' do
@@ -60,7 +60,7 @@ describe "BuffetAdmin signs_up" do
     #act
     visit root_path
     within 'header'  do
-      click_on 'Entrar'
+      click_on 'Entrar como Administrador'
     end
     click_on 'Criar uma conta'
     within '#new_buffet_admin_account' do

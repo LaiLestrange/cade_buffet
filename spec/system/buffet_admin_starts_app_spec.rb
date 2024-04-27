@@ -39,7 +39,7 @@ describe "BuffetAdmin opens the app" do
       #act
       visit root_path
       within 'header'  do
-        click_on 'Entrar'
+        click_on 'Entrar como Administrador'
       end
       fill_in 'E-mail', with: admin.email
       fill_in 'Senha', with: admin.password
@@ -61,6 +61,20 @@ describe "BuffetAdmin opens the app" do
         password: "04dm1n"
       )
 
+      buffet = Buffet.create!(
+        brand_name: 'Eventos Buffet',
+        company_name: 'Buffet de Eventos LTDA',
+        registration_number: '123456789',
+        phone_number: '11 1111-1111',
+        email: 'eventos@buffet.com',
+        full_address: 'Rua dos Eventos, 2',
+        state: 'EV',
+        city: 'Eventual',
+        zip_code: '33333-333',
+        description: 'Esse é um Buffet de Eventos',
+        buffet_admin: admin
+      )
+
       login_as admin, scope: :buffet_admin
 
       #act
@@ -72,7 +86,7 @@ describe "BuffetAdmin opens the app" do
       #assert
       expect(current_path).to eq root_path
       expect(page).to have_content 'Logout efetuado com sucesso.'
-      expect(page).to have_link 'Entrar'
+      expect(page).to have_link 'Entrar como Administrador'
     end
   end
 

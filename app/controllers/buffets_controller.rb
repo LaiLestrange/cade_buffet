@@ -1,5 +1,6 @@
 class BuffetsController < ApplicationController
   before_action :authenticate_buffet_admin!, only: [:edit, :update, :new, :create]
+  # before_action :is_customer, only: [:edit, :update, :new, :create]
 
   def index
     if buffet_admin_signed_in? && current_buffet_admin.buffet.blank?
@@ -69,4 +70,10 @@ class BuffetsController < ApplicationController
       :description
     )
   end
+
+  # def is_customer
+  #   if customer_signed_in?
+  #     redirect_to root_path, notice: "Você não possui autorização para essa ação!"
+  #   end
+  # end
 end

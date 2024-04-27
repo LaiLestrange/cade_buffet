@@ -13,7 +13,7 @@ describe "BuffetAdmin register Buffet" do
       #act
       visit root_path
       within 'header'  do
-        click_on 'Entrar'
+        click_on 'Entrar como Administrador'
       end
       click_on 'Criar uma conta'
       #within 'form' do
