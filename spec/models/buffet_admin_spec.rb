@@ -8,7 +8,7 @@ RSpec.describe BuffetAdmin, type: :model do
         email: 'admin1@buffet.com',
         password: 'buff3t'
       )
-      first_buffet = Buffet.create!(
+      Buffet.create!(
         brand_name: 'Eventos 1 Buffet',
         company_name: 'Buffet 1 de Eventos LTDA',
         registration_number: '123456789',
@@ -26,7 +26,7 @@ RSpec.describe BuffetAdmin, type: :model do
         email: 'admin2@buffet.com',
         password: 'buff3t'
       )
-      second_buffet = Buffet.new(
+      buffet = Buffet.new(
         brand_name: 'Eventos 2 Buffet',
         company_name: 'Buffet 2 de Eventos LTDA',
         registration_number: '234567891',
@@ -40,7 +40,7 @@ RSpec.describe BuffetAdmin, type: :model do
         buffet_admin: second_admin
       )
 
-      expect(second_buffet.valid?).to eq true
+      expect(buffet.valid?).to eq true
     end
     context "uniqueness" do
       it 'false when buffet is already in use' do
@@ -79,6 +79,8 @@ RSpec.describe BuffetAdmin, type: :model do
         )
 
         expect(second_buffet.valid?).to eq false
+        expect(second_buffet.errors[:buffet_admin]).to include "já está em uso"
+        # expect(admin.buffet).to eq first_buffet (interessante implementar)
       end
     end
   end

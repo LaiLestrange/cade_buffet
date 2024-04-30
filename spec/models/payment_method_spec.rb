@@ -34,64 +34,20 @@ RSpec.describe PaymentMethod, type: :model do
     end
     context "presence" do
       it "false when missing value of name" do
-        #Arrange
-        admin = BuffetAdmin.create!(
-          name: 'Admin 1 do Buffet',
-          email: 'admin1@buffet.com',
-          password: 'buff3t'
-        )
-        buffet = Buffet.create!(
-          brand_name: 'Eventos 1 Buffet',
-          company_name: 'Buffet 1 de Eventos LTDA',
-          registration_number: '123456789',
-          phone_number: '11 11111-1111',
-          email: 'buffet1@buffet.com',
-          full_address: 'Rua dos Buffets, 11, Bairro dos Eventos',
-          state: 'BF',
-          city: 'Eventuais',
-          zip_code: '11111-111',
-          description: 'A descrição do primeiro buffet',
-          buffet_admin: admin
-        )
-        #Arrange
-        payment_method = PaymentMethod.new(
-          name: '',
-          details: 'Método de Pagamento que o Buffet pode oferecer',
-          buffet: buffet
-        )
+        payment_method = PaymentMethod.new(name: '')
+        payment_method.valid?
+        errors = payment_method.errors
 
-        #Act & Assert
-        expect(payment_method.valid?).to eq false
+        expect(errors.include? :name).to eq true
+        expect(errors[:name]).to include 'não pode ficar em branco'
       end
 
       it "true when missing value of details" do
-        #Arrange
-        admin = BuffetAdmin.create!(
-          name: 'Admin 1 do Buffet',
-          email: 'admin1@buffet.com',
-          password: 'buff3t'
-        )
-        buffet = Buffet.create!(
-          brand_name: 'Eventos 1 Buffet',
-          company_name: 'Buffet 1 de Eventos LTDA',
-          registration_number: '123456789',
-          phone_number: '11 11111-1111',
-          email: 'buffet1@buffet.com',
-          full_address: 'Rua dos Buffets, 11, Bairro dos Eventos',
-          state: 'BF',
-          city: 'Eventuais',
-          zip_code: '11111-111',
-          description: 'A descrição do primeiro buffet',
-          buffet_admin: admin
-        )
-        payment_method = PaymentMethod.new(
-          name: 'Método de Pagamento',
-          details: '',
-          buffet: buffet
-        )
+        payment_method = PaymentMethod.new(details: '')
+        payment_method.valid?
+        errors = payment_method.errors
 
-        #Act & Assert
-        expect(payment_method.valid?).to eq true
+        expect(errors.include? :details).to eq false
       end
 
       it "false when missing value of buffet" do

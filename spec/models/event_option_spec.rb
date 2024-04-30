@@ -15,25 +15,21 @@ RSpec.describe EventOption, type: :model do
     end
     context "presence" do
       it "false when missing value of name" do
-        #Arrange
-        option = EventOption.new(
-          name: '',
-          description: 'Serviço que o Buffet pode oferecer'
-        )
+        option = EventOption.new(name: '')
+        option.valid?
+        errors = option.errors
 
-        #Act & Assert
-        expect(option.valid?).to eq false
+        expect(errors.include? :name).to eq true
+        expect(errors[:name]).to include 'não pode ficar em branco'
       end
 
       it "false when missing value of description" do
-        #Arrange
-        option = EventOption.new(
-          name: 'Opção de Serviço',
-          description: ''
-        )
+        option = EventOption.new(description: '')
+        option.valid?
+        errors = option.errors
 
-        #Act & Assert
-        expect(option.valid?).to eq false
+        expect(errors.include? :description).to eq true
+        expect(errors[:description]).to include 'não pode ficar em branco'
       end
     end
 
