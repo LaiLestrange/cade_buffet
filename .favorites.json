@@ -1,0 +1,59 @@
+[
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/config/locales",
+        "parent_id": null,
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "config/locales",
+        "id": "QIZeM5lCDbAXYvqE"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/db",
+        "parent_id": null,
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "db",
+        "id": "Rb0pY4HNWalA3wmT"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/spec",
+        "parent_id": null,
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "spec",
+        "id": "Moxt4QHIiNb2dmG9"
+    },
+    {
+        "type": "Group",
+        "name": "app",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "okIzrWbQKP1lZGyC",
+        "iconColor": "rgb(139, 0, 0)"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/app/controllers",
+        "parent_id": "okIzrWbQKP1lZGyC",
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "app/controllers",
+        "id": "XGm6RAlsCOPaQ8tW"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/app/models",
+        "parent_id": "okIzrWbQKP1lZGyC",
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "app/models",
+        "id": "04Uuo9dHMxyeQ12B"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/nineball/rails-campuscode/cade_buffet/app/views",
+        "parent_id": "okIzrWbQKP1lZGyC",
+        "workspaceRoot": "/home/nineball/rails-campuscode/cade_buffet",
+        "workspacePath": "app/views",
+        "id": "oqf2LRAJc6KBag7y"
+    }
+]

@@ -11,34 +11,43 @@
 
   <body>
     <header>
+
       <h1><%= link_to 'Cadê Buffet?', root_path %></h1>
-      <% unless current_buffet_admin %>
-        <%= form_with url: search_path, method: :get do %>
-          <%= label_tag :q, 'Procurar Buffets:' %>
-          <%= text_field_tag :q %>
-          <%= submit_tag 'Pesquisar' %>
+
+      <div id="search_buffet">
+        <% unless current_buffet_admin %>
+          <%= form_with url: search_path, method: :get do %>
+            <%= label_tag :q, 'Procurar Buffets:' %>
+            <%= text_field_tag :q %>
+            <%= submit_tag 'Pesquisar' %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
 
-
-      <% if buffet_admin_signed_in? %>
-        <div>
-          <% name_to_show = current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %>
-          <% buffet_of_admin = current_buffet_admin.buffet %>
-
-          <p>Olá, <%= link_to name_to_show, buffet_of_admin %></p>
-          <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
-        </div>
-      <% else %>
-        <% if customer_signed_in? %>
-          <p>Olá, <%= current_customer.name %></p>
-           <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>
+      <nav>
+        <% if @user_app %>
+          <%= link_to 'Entrar como Administrador', new_buffet_admin_session_path  %>
+          <%= link_to 'Entrar como Cliente', new_customer_session_path  %>
         <% else %>
-          <%= link_to 'Entrar como Administrador', new_buffet_admin_session_path %>
-          <%= link_to 'Entrar como Cliente', new_customer_session_path %>
+
+          <% if @buffet_admin_app %>
+            <% name_to_show = current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %>
+            <% buffet_of_admin = current_buffet_admin.buffet %>
+            <p>Olá, <%= link_to name_to_show, buffet_of_admin %></p>
+            <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
+          <% end %>
+
+          <% if @customer_app %>
+            <p>Olá, <%= current_customer.name %></p>
+            <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>
+          <% end %>
+
         <% end %>
-      <% end %>
+      </nav>
+
     </header>
+
+
     <div>
       <%= notice %>
       <%= alert %>

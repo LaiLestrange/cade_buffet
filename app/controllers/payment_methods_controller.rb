@@ -2,6 +2,7 @@ class PaymentMethodsController < ApplicationController
   before_action :authenticate_buffet_admin!, only: [:new, :create]
   def new
     @payment_method = PaymentMethod.new
+    @buffet = current_buffet_admin.buffet
   end
 
   def create

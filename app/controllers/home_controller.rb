@@ -2,7 +2,8 @@ class HomeController < ApplicationController
 
   def index
     if buffet_admin_signed_in?
-      redirect_to buffet_path(current_buffet_admin.buffet)
+      return redirect_to buffet_path(current_buffet_admin.buffet) if current_buffet_admin.buffet.present?
+      @buffets = Buffet.all
     else
       @buffets = Buffet.all
     end

@@ -24,6 +24,10 @@ class BuffetsController < ApplicationController
     end
   end
   def new
+    if buffet_admin_signed_in? && current_buffet_admin.buffet.present?
+      @buffet = current_buffet_admin.buffet
+      return redirect_to buffet_path(@buffet), notice: "Já possui um Buffet cadastrado!"
+    end
     @buffet = Buffet.new
     @buffet.buffet_admin = current_buffet_admin
   end
@@ -34,7 +38,8 @@ class BuffetsController < ApplicationController
     if @buffet.save
       redirect_to buffet_path(@buffet), notice: "Buffet cadastrado com sucesso!"
     else
-      redirect_to new_buffet_path, notice: "Cadastre seu Buffet"
+      flash.now[:notice] = "Cadastre seu Buffet"
+      render 'new'
     end
   end
 
@@ -46,6 +51,7 @@ class BuffetsController < ApplicationController
   end
 
   def update
+    @buffet = current_buffet_admin.buffet
     if @buffet.update(buffet_params)
       redirect_to buffet_path(@buffet), notice: "Buffet atualizado com sucesso!"
     else
@@ -70,7 +76,6 @@ class BuffetsController < ApplicationController
       :description
     )
   end
-
   # def is_customer
   #   if customer_signed_in?
   #     redirect_to root_path, notice: "Você não possui autorização para essa ação!"
