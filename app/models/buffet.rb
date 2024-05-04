@@ -1,8 +1,10 @@
 class Buffet < ApplicationRecord
   belongs_to :buffet_admin
-  
+
   has_many :event_types
   has_many :payment_methods
+
+  # accepts_nested_attributes_for :event_types
 
   validates :brand_name,
             :company_name,

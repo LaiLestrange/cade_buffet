@@ -13,10 +13,12 @@ Rails.application.routes.draw do
       sessions: 'buffet_admins/sessions'
     }
 
-  resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
-  resources :event_types, only: [:show, :new, :create]
+  resources :buffets, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :event_types, only: [:show, :new, :create]
+  end
   resources :payment_methods, only: [:new, :create]
   resources :event_prices, only: [:new, :create]
+
 
   get 'search', to:"home#search"
 end

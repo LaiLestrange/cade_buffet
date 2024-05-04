@@ -13,15 +13,16 @@ class EventTypesController < ApplicationController
   end
   def new
     @event = EventType.new
+    @buffet = current_buffet_admin.buffet
   end
 
   def create
-    buffet = current_buffet_admin.buffet
+    @buffet = current_buffet_admin.buffet
 
     @event = EventType.new(event_params)
-    @event.buffet = buffet
+    @event.buffet = @buffet
     if @event.save()
-      redirect_to buffet_path(buffet), notice: 'Evento cadastrado com sucesso!'
+      redirect_to buffet_path(@buffet), notice: 'Evento cadastrado com sucesso!'
     else
       flash.now[:notice] = "Evento não cadastrado!"
       render 'new'

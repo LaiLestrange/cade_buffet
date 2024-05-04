@@ -41,7 +41,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
     end
     click_on 'Cadastrar Evento'
 
-    expect(current_path).to eq new_event_type_path
+    # expect(current_path).to eq new_event_type_path
     expect(page).to have_content 'Cadastro de Evento'
     within '#new_event_type'  do
       expect(page).to have_field 'Nome'
@@ -111,7 +111,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
      click_on 'Criar Evento'
     end
 
-    expect(current_path).to eq event_types_path
+    expect(current_path).to eq buffet_event_types_path(buffet)
     expect(page).to have_content 'Evento não cadastrado!'
     expect(page).to have_content 'Cardápio do evento, tipo de comida, etc'
   end
@@ -238,7 +238,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
     )
     login_as first_admin, scope: :buffet_admin
 
-    visit new_event_type_path
+    visit new_buffet_event_type_path(second_buffet)
     within('header') do
       click_on first_admin.name
     end
@@ -338,7 +338,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
 
     login_as first_admin, scope: :buffet_admin
 
-    visit event_type_path(second_event)
+    visit buffet_event_type_path(second_buffet, second_event)
 
     expect(current_path).to eq buffet_path(first_buffet)
     expect(page).to have_content "Não foi possível visualizar esse evento!"

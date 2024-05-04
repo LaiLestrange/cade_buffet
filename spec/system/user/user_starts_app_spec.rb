@@ -335,7 +335,7 @@ describe "User starts app" do
       click_on buffet.brand_name
       click_on event.name
 
-      expect(current_path).to eq event_type_path(event)
+      expect(current_path).to eq buffet_event_type_path(buffet, event)
       expect(page).to have_content event.menu
       expect(page).to have_content 'R$ 2.000,00'
       expect(page).to have_content 'R$ 70,00'
@@ -565,7 +565,7 @@ describe "User searches for buffet" do
       event_options: options,
       buffet: second_buffet
     )
-    
+
     visit root_path
     fill_in 'Procurar Buffets', with: 'PESQUISA'
     click_on 'Pesquisar'

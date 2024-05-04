@@ -29,7 +29,7 @@
 
 
 <div id="events">
-  <p><%= link_to 'Cadastrar Evento', new_event_type_path if current_buffet_admin %></p>
+  <p><%= link_to 'Cadastrar Evento', new_buffet_event_type_path(current_buffet_admin.buffet) if current_buffet_admin %></p>
   <%= render  "event_types/index"  unless @buffet.event_types.blank? %>
 </div>
 

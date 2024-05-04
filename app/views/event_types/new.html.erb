@@ -10,7 +10,7 @@
 <% end %>
 
 <div id='new_event_type'>
-  <%= form_with model: @event do |f|%>
+  <%= form_with model: [@buffet, @event] do |f|%>
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true %>
