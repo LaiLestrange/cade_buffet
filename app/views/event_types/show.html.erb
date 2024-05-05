@@ -1,5 +1,6 @@
 <h1><%= @event.name %></h1>
 <p><%= @event.description %></p>
+<%= link_to 'Voltar', @event.buffet %>
 
 <div id="photos">
 <% @event.photos.each do |photo| %>

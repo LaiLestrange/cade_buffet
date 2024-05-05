@@ -650,3 +650,5 @@ describe "User searches for buffet" do
     end
   end
 end
+
+

@@ -1,0 +1,39 @@
+<h1>Novo Orçamento</h1>
+
+<%= request.filtered_parameters %>
+<%= @buffet.class %>
+<%# @events.ids %>
+
+<div id="new_order_form">
+  <%= form_with model: @order do |f|%>
+
+    <div class="field">
+      <%= f.label :event_date %><br />
+      <%= f.date_field :event_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :event_type_id %>
+      <%= f.collection_select :event_type_id, @events , :id, :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :guests %>
+      <%= f.number_field :guests %>
+    </div>
+
+    <div class="field">
+      <%= f.label :more_details %>
+      <%= f.text_area :more_details %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_area :address %>
+    </div>
+
+    <%= f.submit %>
+
+
+  <% end %>
+</div>

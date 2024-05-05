@@ -2,6 +2,9 @@
 <h1><%= @buffet.brand_name %></h1>
 <h2><%= @buffet.description %></h2>
 
+<div id="new_order_button">
+  <%= link_to 'Pedir um Orçamento', new_order_path(buffet_id: @buffet.id) %>
+</div>
 
 <div>
   <h3>Informações:</h3>
@@ -17,7 +20,7 @@
     <li> <strong>Localização: </strong>
       <p>
         <%= @buffet.full_address %><br>
-        <%= @buffet.city %> |  <%= @buffet.state %><br>
+        <%= @buffet.city %> | <%= @buffet.state %><br>
         CEP: <%= @buffet.zip_code %><br>
       </p>
     </li>

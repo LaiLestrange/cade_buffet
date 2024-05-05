@@ -1,0 +1,12 @@
+<h1>Pedido <%= @order.code %></h1>
+<h3>Status: <%= t(@order.status) %></h3>
+
+<h2>Informações sobre o Pedido:</h2>
+<div>
+  <p>Buffet: <%= link_to @order.buffet.brand_name, @order.buffet %></p>
+  <p>Tipo de Evento: <%= @order.event_type.name %></p>
+  <p>Data do Evento: <%= I18n.localize @order.event_date %></p>
+  <p>Quantidade de Convidados: <%= @order.guests %></p>
+  <p>Sobre o Evento: <%= @order.more_details %></p>
+  <p>Endereço do Evento: <%= @order.address %></p>
+</div>
