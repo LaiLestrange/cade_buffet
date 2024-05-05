@@ -101,7 +101,7 @@ describe "BuffetAdmin adds Price to Event" do
       click_on 'Criar Preço'
     end
 
-    expect(current_path).to eq buffet_event_type_path(buffet, event)
+    expect(current_path).to eq buffet_event_type_path(event, buffet)
     expect(page).to have_content 'Preço cadastrado com sucesso!'
     expect(page).to have_content 'Preço Inicial: R$ 2.000,00'
     expect(page).to have_content 'R$ 50,00 por convidado extra'
@@ -225,7 +225,7 @@ describe "BuffetAdmin adds Price to Event" do
       click_on 'Criar Preço'
     end
 
-    expect(current_path).to eq buffet_event_type_path(buffet, event)
+    expect(current_path).to eq buffet_event_type_path(event, buffet)
     expect(page).to have_content 'Preço cadastrado com sucesso!'
     expect(page).to have_content 'Preço Inicial: R$ 2.000,00'
     expect(page).to have_content 'R$ 50,00 por convidado extra'

@@ -335,7 +335,7 @@ describe "User starts app" do
       click_on buffet.brand_name
       click_on event.name
 
-      expect(current_path).to eq buffet_event_type_path(buffet, event)
+      expect(current_path).to eq buffet_event_type_path(event, buffet)
       expect(page).to have_content event.menu
       expect(page).to have_content 'R$ 2.000,00'
       expect(page).to have_content 'R$ 70,00'

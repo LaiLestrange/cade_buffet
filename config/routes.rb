@@ -22,3 +22,6 @@ Rails.application.routes.draw do
 
   get 'search', to:"home#search"
 end
+
+
+

@@ -338,7 +338,7 @@ describe "BuffetAdmin adds EventType to Buffet" do
 
     login_as first_admin, scope: :buffet_admin
 
-    visit buffet_event_type_path(second_buffet, second_event)
+    visit buffet_event_type_path(second_event, second_buffet)
 
     expect(current_path).to eq buffet_path(first_buffet)
     expect(page).to have_content "Não foi possível visualizar esse evento!"

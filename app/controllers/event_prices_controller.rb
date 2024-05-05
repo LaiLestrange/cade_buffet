@@ -12,7 +12,7 @@ class EventPricesController < ApplicationController
     @price.event_type = @event
 
     if @price.save()
-      redirect_to buffet_event_type_path(@buffet, @event), notice: 'Preço cadastrado com sucesso!'
+      redirect_to buffet_event_type_path(@event, @buffet), notice: 'Preço cadastrado com sucesso!'
     else
       flash.now[:notice] = "Preço não foi cadastrado!"
       render 'new'

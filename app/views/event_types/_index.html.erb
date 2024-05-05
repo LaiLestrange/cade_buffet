@@ -2,7 +2,7 @@
 
 <% @events.each do |event| %>
 <div>
-  <h2><%= link_to event.name, buffet_event_type_path(event) %></h2>
+  <h2><%= link_to event.name, buffet_event_type_path(event.buffet, event) %></h2>
   <p><%= event.description %></p>
 
   <div id="photo">
@@ -26,4 +26,3 @@
 
 
 <% end %>
-
