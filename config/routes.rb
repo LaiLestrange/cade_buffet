@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :payment_methods, only: [:new, :create]
   resources :event_prices, only: [:new, :create]
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:new, :create, :show, :index]
 
 
   get 'search', to:"home#search"

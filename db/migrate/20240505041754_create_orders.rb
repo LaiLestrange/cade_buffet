@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration[7.1]
       t.integer :guests
       t.string :address
       t.string :more_details
-      t.integer :code
+      t.string :code
       t.integer :status, default: 0
 
       t.timestamps

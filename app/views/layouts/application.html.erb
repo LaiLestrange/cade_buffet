@@ -39,6 +39,7 @@
 
           <% if @customer_app %>
             <p>Olá, <%= current_customer.name %></p>
+            <%= link_to 'Meus Pedidos', orders_path %>
             <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>
           <% end %>
 

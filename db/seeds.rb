@@ -138,7 +138,7 @@
         buffet: seed_buffet_3
       )
       #endregion
-      
+
   #endregion
 
   #region events per buffet
@@ -178,7 +178,7 @@
           name: 'E2B1SEED Tipo de Evento',
           description: 'E2B1SEED Descrição do evento, propaganda, etc',
           menu: 'E2B1SEED Cardápio do evento, tipo de comida etc',
-          location: false,
+          location: true,
           min_guests: 10,
           max_guests: 50,
           duration: 120,
@@ -294,7 +294,7 @@
           name: 'E3B2SEED Tipo de Evento',
           description: 'E3B2SEED Descrição do evento, propaganda, etc',
           menu: 'E3B2SEED Cardápio do evento, tipo de comida etc',
-          location: false,
+          location: true,
           min_guests: 10,
           max_guests: 50,
           duration: 120,
@@ -326,7 +326,7 @@
           name: 'E1B3SEED Tipo de Evento',
           description: 'E1B3SEED Descrição do evento, propaganda, etc',
           menu: 'E1B3SEED Cardápio do evento, tipo de comida etc',
-          location: false,
+          location: true,
           min_guests: 10,
           max_guests: 50,
           duration: 120,

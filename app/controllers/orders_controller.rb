@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :authenticate_customer!, only: [:new, :create]
+before_action :authenticate_customer!, only: [:new, :create, :show, :index]
 before_action :order_params, only: [:create]
   def new
     @order = Order.new
@@ -31,8 +31,16 @@ before_action :order_params, only: [:create]
 
   def show
     @order = Order.find(params[:id])
+    if customer_signed_in?
+      unless current_customer.orders.include?(@order)
+        redirect_to orders_path, notice: 'Acesse os seus pedidos'
+      end
+    end
   end
 
+  def index
+    @orders = Order.where(customer: current_customer)
+  end
 
   private
   def order_params

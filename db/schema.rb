@@ -138,7 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_041754) do
     t.integer "guests"
     t.string "address"
     t.string "more_details"
-    t.integer "code"
+    t.string "code"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

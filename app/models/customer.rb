@@ -8,4 +8,6 @@ class Customer < ApplicationRecord
   validates :social_security_number, uniqueness: true
 
   validates :social_security_number, cpf: { message: 'CPF Inválido!' }
+
+  has_many :orders
 end
