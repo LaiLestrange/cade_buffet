@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 describe 'Customer views list of own orders' do
-  it 'and needs to be authenticated' do
-    visit orders_path
-    expect(current_path).to eq new_customer_session_path
-  end
   it 'from the root path' do
     event_options = [
       EventOption.create!(name: "Bar",
@@ -729,4 +725,3 @@ describe 'Customer view more details of order' do
   end
 
 end
-

@@ -343,6 +343,14 @@ describe "User starts app" do
     end
 
   end
+
+  it 'and cant see own orders' do
+
+    visit orders_path
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Faça login primeiro'
+  end
 end
 
 describe "User searches for buffet" do
@@ -650,5 +658,3 @@ describe "User searches for buffet" do
     end
   end
 end
-
-

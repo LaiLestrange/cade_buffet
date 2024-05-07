@@ -83,6 +83,7 @@ describe "BuffetAdmin starts the app" do
     end
     expect(current_path).to eq buffet_path buffet.id
     expect(page).to have_content buffet.brand_name
+    expect(page).not_to have_content 'Pedir um Orçamento'
   end
 
 end

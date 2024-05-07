@@ -56,9 +56,7 @@ describe "Customer creates an order" do
       )
 
     #act
-    visit root_path
-    click_on buffet.brand_name
-    click_on 'Pedir um Orçamento'
+    visit new_order_path
 
     #assert
     expect(page).not_to have_content 'Novo Orçamento'

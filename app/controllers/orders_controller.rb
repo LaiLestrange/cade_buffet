@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :authenticate_customer!, only: [:new, :create, :show, :index]
+before_action :authenticate_customer!, only: [:new, :create]
 before_action :order_params, only: [:create]
   def new
     @order = Order.new
@@ -42,16 +42,33 @@ before_action :order_params, only: [:create]
   end
 
   def show
-    @order = Order.find(params[:id])
     if customer_signed_in?
+      @order = Order.find(params[:id])
       unless current_customer.orders.include?(@order)
         redirect_to orders_path, notice: 'Acesse os seus pedidos'
+      end
+    else
+      if buffet_admin_signed_in?
+        @order = Order.find(params[:id])
+        unless @order.buffet == current_buffet_admin.buffet
+          redirect_to orders_path, notice: 'Acesse os seus pedidos'
+        end
+      else
+        redirect_to root_path, notice: "Faça login primeiro"
       end
     end
   end
 
   def index
-    @orders = Order.where(customer: current_customer)
+    if current_customer
+      @orders = Order.where(customer: current_customer)
+    else
+      if current_buffet_admin
+        @orders = Order.where(buffet: current_buffet_admin)
+      else
+        redirect_to root_path, notice: "Faça login primeiro"
+      end
+    end
   end
 
   private
@@ -60,8 +77,7 @@ before_action :order_params, only: [:create]
       :event_date,
       :guests,
       :address,
-      :more_details,
-      # :event_type_id
+      :more_details
       )
   end
 

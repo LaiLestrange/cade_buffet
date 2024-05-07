@@ -34,6 +34,7 @@
             <% name_to_show = current_buffet_admin.name.blank? ? current_buffet_admin.email : current_buffet_admin.name %>
             <% buffet_of_admin = current_buffet_admin.buffet %>
             <p>Olá, <%= link_to name_to_show, buffet_of_admin %></p>
+            <%= link_to 'Pedidos', orders_path %>
             <%= button_to 'Sair', destroy_buffet_admin_session_path, method: :delete %>
           <% end %>
 

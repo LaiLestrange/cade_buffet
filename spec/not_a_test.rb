@@ -351,12 +351,12 @@ describe 'Não são testes!!!!' do
         event_type: third_event_b3
       )
 
-        customer = Customer.create!(
-          name: 'Fulano Cliente',
-          social_security_number: "52383271020",
-          email: "cliente1@buffet.com",
-          password: "cliente"
-        )
+      customer = Customer.create!(
+        name: 'Fulano Cliente',
+        social_security_number: "52383271020",
+        email: "cliente1@buffet.com",
+        password: "cliente"
+      )
     end
 
     it 'arrange com 1 admin, buffet, e multiplos events e payments' do

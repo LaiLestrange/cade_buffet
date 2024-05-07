@@ -2,9 +2,13 @@
 <h1><%= @buffet.brand_name %></h1>
 <h2><%= @buffet.description %></h2>
 
-<div id="new_order_button">
-  <%= link_to 'Pedir um Orçamento', new_order_path(buffet_id: @buffet.id) %>
-</div>
+
+<% if current_customer %>
+  <div id="new_order_button">
+    <%= link_to 'Pedir um Orçamento', new_order_path(buffet_id: @buffet.id) %>
+  </div>
+<% end %>
+
 
 <div>
   <h3>Informações:</h3>
