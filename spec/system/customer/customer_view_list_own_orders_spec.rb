@@ -576,6 +576,7 @@ describe 'Customer view more details of order' do
     expect(current_path).to eq order_path(order)
     expect(page).to have_content "Pedido #{order.code}"
     expect(page).to have_content order.more_details
+    expect(page).not_to have_content "Responder Orçamento"
   end
 
   it 'and doesnt view others orders' do

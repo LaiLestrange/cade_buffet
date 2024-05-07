@@ -50,6 +50,7 @@ before_action :order_params, only: [:create]
     else
       if buffet_admin_signed_in?
         @order = Order.find(params[:id])
+        @orders = Order.where(buffet: @order.buffet, event_date: @order.event_date)
         unless @order.buffet == current_buffet_admin.buffet
           redirect_to orders_path, notice: 'Acesse os seus pedidos'
         end
@@ -65,6 +66,12 @@ before_action :order_params, only: [:create]
     else
       if current_buffet_admin
         @orders = Order.where(buffet: current_buffet_admin)
+                       .in_order_of(:status, [
+                        :waiting,
+                        :confirmed,
+                        :approved,
+                        :canceled
+                        ])
       else
         redirect_to root_path, notice: "Faça login primeiro"
       end

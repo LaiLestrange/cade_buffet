@@ -1,6 +1,27 @@
 <h1>Pedido <%= @order.code %></h1>
 <h3>Status: <%= t(@order.status) %></h3>
 
+<%= link_to  "Responder Orçamento", root_path if current_buffet_admin %>
+
+<% if current_buffet_admin %>
+
+  <% if @orders.count > 1 %>
+    <h3>Alerta!</h3>
+    <p>Outros eventos para o mesmo dia:</p>
+
+     <% @orders.each do |order| %>
+      <div id="order" class=<%= order.status %>>
+        <%= link_to order.code, order %>
+        <%= order.event_date %>
+        <%= order.status %>
+      </div>
+    <% end %>
+
+
+  <% end %>
+
+<% end %>
+
 <h2>Informações sobre o Pedido:</h2>
 <div>
   <p>Buffet: <%= link_to @order.buffet.brand_name, @order.buffet %></p>

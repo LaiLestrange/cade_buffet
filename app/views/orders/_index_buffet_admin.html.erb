@@ -4,9 +4,10 @@
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
-      <div id="order">
+      <div id="order" class=<%= order.status %>>
         <%= link_to order.code, order %>
         <%= order.event_date %>
+        <%= order.status %>
       </div>
     <% end %>
   <% else %>
