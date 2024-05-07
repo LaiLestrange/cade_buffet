@@ -11,7 +11,7 @@
 
   <p><%= event.menu %></p>
   <p><%= "Você pode escolher a localização do evento!" if event.location %></p>
-  <p><%= "Localização {endereço do buffet}" unless event.location %></p>
+  <p><%= "Localização: #{event.buffet.address}" unless event.location %></p>
   <p>De <%= event.min_guests %> a  <%= event.max_guests %> convidados</p>
   <p>Duração: <%= event.duration %>min</p>
   <p>Serviços Inclusos:

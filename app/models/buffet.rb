@@ -19,4 +19,12 @@ class Buffet < ApplicationRecord
              presence: true
   validates :state, length: { is: 2 }
   validates :registration_number, :buffet_admin, uniqueness: true
+
+  after_validation :set_address
+
+
+  private
+  def set_address
+    self.address = "#{full_address}, #{city} (#{state}) - #{zip_code}"
+  end
 end

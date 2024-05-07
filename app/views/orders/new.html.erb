@@ -1,20 +1,24 @@
 <h1>Novo Orçamento</h1>
 
-<%= request.filtered_parameters %>
-<%= @buffet.class %>
-<%# @events.ids %>
+<% if @order.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <div id="new_order_form">
   <%= form_with model: @order do |f|%>
+    <div class="field">
+      <%= hidden_field_tag(:event_type_id, @event.id) %>
+      <%= hidden_field_tag(:buffet_id, @buffet.id) %>
+    </div>
 
     <div class="field">
       <%= f.label :event_date %><br />
       <%= f.date_field :event_date %>
-    </div>
-
-    <div class="field">
-      <%= f.label :event_type_id %>
-      <%= f.collection_select :event_type_id, @events , :id, :name %>
     </div>
 
     <div class="field">
@@ -27,10 +31,15 @@
       <%= f.text_area :more_details %>
     </div>
 
-    <div class="field" id="event_address">
-      <%= f.label :address %>
-      <%= f.text_area :address %>
-    </div>
+      <div class="field">
+        <%= f.label :address %>
+        <% if @event.location %>
+          <%= f.text_area :address %>
+        <% else %>
+          <%= f.text_area :address, disabled: true %>
+          <%= hidden_field_tag(:address, @order.address) %>
+        <% end %>
+      </div>
 
     <%= f.submit %>
   <% end %>

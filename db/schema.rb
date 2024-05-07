@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_041754) do
     t.string "phone_number"
     t.string "email"
     t.string "full_address"
+    t.string "address"
     t.string "state"
     t.string "city"
     t.string "zip_code"

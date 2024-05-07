@@ -7,6 +7,7 @@ class CreateBuffets < ActiveRecord::Migration[7.1]
       t.string :phone_number
       t.string :email
       t.string :full_address
+      t.string :address
       t.string :state
       t.string :city
       t.string :zip_code
