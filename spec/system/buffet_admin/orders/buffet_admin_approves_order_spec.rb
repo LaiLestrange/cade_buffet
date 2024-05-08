@@ -59,21 +59,21 @@ describe 'BuffetAdmin approves orders' do
         buffet: buffet
       )
 
-      # weekday_price_e1 = EventPrice.create!(
-      #   min_price: 1000,
-      #   extra_guest_fee: 10,
-      #   overtime_fee: 11,
-      #   weekend_schedule: false,
-      #   event_type: first_event
-      # )
+      weekday_price_e1 = EventPrice.create!(
+        min_price: 1000,
+        extra_guest_fee: 10,
+        overtime_fee: 11,
+        weekend_schedule: false,
+        event_type: first_event
+      )
 
-      # weekend_price_e1 = EventPrice.create!(
-      #   min_price: 1500,
-      #   extra_guest_fee: 15,
-      #   overtime_fee: 16,
-      #   weekend_schedule: true,
-      #   event_type: first_event
-      # )
+      weekend_price_e1 = EventPrice.create!(
+        min_price: 1500,
+        extra_guest_fee: 15,
+        overtime_fee: 16,
+        weekend_schedule: true,
+        event_type: first_event
+      )
 
       second_event = EventType.create!(
         name: "Evento 2 de #{buffet.brand_name}",
@@ -133,8 +133,35 @@ describe 'BuffetAdmin approves orders' do
       visit root_path
       click_on 'Pedidos'
       click_on first_order.code
+      click_on 'Responder Orçamento'
 
-      expect(page).to have_link 'Responder Orçamento'
+      expect(current_path).to eq new_order_invoice_path(first_order)
+      expect(page).to have_content 'Proposta de Orçamento'
+      within ('#order_details') do
+        expect(page).to have_content first_order.code
+        expect(page).to have_content first_order.event_date
+        expect(page).to have_content first_order.guests
+        expect(page).to have_content first_order.address
+        expect(page).to have_content first_order.more_details
+        expect(page).to have_content first_order.customer.name
+        expect(page).to have_content first_order.event_type.name
+      end
+      expect(page).not_to have_content second_order.more_details
+      expect(page).not_to have_content second_event.name
+      within('#event_details') do
+        expect(page).to have_content first_event.name
+        expect(page).to have_content first_event.description
+        expect(page).to have_content first_event.menu
+        expect(page).to have_content first_event.min_guests
+        expect(page).to have_content first_event.max_guests
+        expect(page).to have_content first_event.duration
+        expect(page).to have_content first_event.event_options
+      end
+
+      within('#new_invoice_form') do
+        expect(page).to have_content "Preço base: #{} "
+      end
+
     end
   end
 end

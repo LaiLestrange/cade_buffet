@@ -1,7 +1,7 @@
 <h1>Pedido <%= @order.code %></h1>
 <h2>Status: <%= t(@order.status) %></h2>
 
-<%= link_to  "Responder Orçamento", root_path if current_buffet_admin %>
+<%= link_to  "Responder Orçamento", new_order_invoice_path(@order) if current_buffet_admin %>
 
 <% if current_buffet_admin %>
 

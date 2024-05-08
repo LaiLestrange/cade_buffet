@@ -293,10 +293,22 @@ describe 'BuffetAdmin view Orders' do
       guests: 25,
       address: 'Endereço do Evento',
       more_details: 'Evento que acontecerá daqui um mês',
+      customer: second_customer,
+      buffet: buffet,
+      event_type: second_event
+    )
+    third_order.waiting!
+
+    fourth_order = Order.create!(
+      event_date: 1.year.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá daqui um ano',
       customer: first_customer,
       buffet: buffet,
       event_type: second_event
     )
+    fourth_order.approved!
 
     login_as admin, scope: :buffet_admin
 
@@ -314,6 +326,9 @@ describe 'BuffetAdmin view Orders' do
       expect(page).to have_content first_order.code
     end
     within ('#orders > div:nth-child(3)') do
+      expect(page).to have_content fourth_order.code
+    end
+    within ('#orders > div:nth-child(4)') do
       expect(page).to have_content second_order.code
     end
 
