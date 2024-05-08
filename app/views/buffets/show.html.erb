@@ -3,7 +3,7 @@
 <h2><%= @buffet.description %></h2>
 
 
-<% if current_customer %>
+<% unless current_buffet_admin %>
   <div id="new_order_button">
     <%= link_to 'Pedir um Orçamento', new_order_path(buffet_id: @buffet.id) %>
   </div>

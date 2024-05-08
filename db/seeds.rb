@@ -410,22 +410,80 @@
   #endregion
 
   #region customers
-    customer_1 = Customer.create!(
+    seed_customer_1 = Customer.create!(
       name: 'C1SEED Nome do Cliente 1',
       social_security_number: "54571916051",
       email: "cliente1@buffet.com.seed",
       password: "cliente"
     )
-    customer_2 = Customer.create!(
+    seed_customer_2 = Customer.create!(
       name: 'C2SEED Nome do Cliente 2',
       social_security_number: "58248282023",
       email: "cliente2@buffet.com.seed",
       password: "cliente"
     )
-    customer_3 = Customer.create!(
+    seed_customer_3 = Customer.create!(
       name: 'C3SEED Nome do Cliente 3',
       social_security_number: "67430469060",
       email: "cliente3@buffet.com.seed",
       password: "cliente"
+    )
+  #endregion
+
+
+  #region orders
+    seed_order_1 = Order.create!(
+      event_date: 1.day.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá amanhã',
+      customer: seed_customer_1,
+      buffet: seed_buffet_1,
+      event_type: seed_event_b1_1
+    )
+    seed_order_2 = Order.create!(
+      event_date: 1.week.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá semana que vem',
+      customer: seed_customer_1,
+      buffet: seed_buffet_2,
+      event_type: seed_event_b2_3
+    )
+    seed_order_3 = Order.create!(
+      event_date: 1.month.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá mês que vem',
+      customer: seed_customer_2,
+      buffet: seed_buffet_3,
+      event_type: seed_event_b3_1
+    )
+    seed_order_4 = Order.create!(
+      event_date: 1.week.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que também acontecerá semana que vem',
+      customer: seed_customer_2,
+      buffet: seed_buffet_2,
+      event_type: seed_event_b2_1
+    )
+    seed_order_5 = Order.create!(
+      event_date: 1.year.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá ano que vem',
+      customer: seed_customer_3,
+      buffet: seed_buffet_1,
+      event_type: seed_event_b1_3
+    )
+    seed_order_6 = Order.create!(
+      event_date: 2.months.from_now,
+      guests: 25,
+      address: 'Endereço do Evento',
+      more_details: 'Evento que acontecerá daqui dois meses',
+      customer: seed_customer_3,
+      buffet: seed_buffet_1,
+      event_type: seed_event_b1_3
     )
   #endregion

@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      invoice: 'Cobrança'
+    attributes:
+      invoice:
+        base_price: 'Preço base'
+        discount: 'Desconto'
+        increase: 'Acrescimo'
+        description: 'Descrição do valor final'
+        expiration_date: 'Data limite para confirmação'
+        order_id: 'Métodos aceitos de pagamento'
+        final_price: 'Preço final'
+        payment_method_ids: 'Métodos de pagamento'

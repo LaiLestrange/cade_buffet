@@ -1,8 +1,5 @@
 <h1>Proposta de Orçamento</h1>
 
-<%= @order.inspect %>
-<%= @event.inspect %>
-
 <div id="order_details">
   <div>Pedido <%= @order.code %></div>
   <div>Data do Evento: <%= @order.event_date %></div>
@@ -11,13 +8,56 @@
   <div>Mais detalhes: <%= @order.more_details %></div>
   <div>Cliente: <%= @order.customer.name %></div>
   <div>Evento: <%= @order.event_type.name %></div>
-</div>
+</div> <br>
 <div id="event_details">
   <div>Evento <%= @event.name %></div>
   <div>Descrição do Evento: <%= @event.description %></div>
   <div>Cardápio do Evento: <%= @event.menu %></div>
   <div>Quantidade de Convidados: de <%= @event.min_guests %> a <%= @event.max_guests %></div>
   <div>Duração do Evento: <%= @event.duration %></div>
-  <div>Serviços Oferecidos: <%= @event.event_options %></div>
+  <div>Serviços Inclusos:
+    <ul>
+      <% @event.event_options.each do |evop| %>
+       <li><%= evop.name %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-<div id="new_invoice_form"></div>
+<div id="new_invoice_form">
+  <h2>Orçamento</h2>
+  <%= form_with model: [@order, @invoice] do |f|%>
+    <%= hidden_field_tag(:order_id, @order.id) %>
+    <div class="field">
+      <%= f.label :base_price %><br />
+      <%= f.number_field :base_price, value: @base_price, disabled: true %>
+      <%= hidden_field_tag(:base_price, @base_price) %>
+    </div>
+    <div class="field">
+      <%= f.label :discount %><br />
+      <%= f.number_field :discount %>
+    </div>
+    <div class="field">
+      <%= f.label :increase %><br />
+      <%= f.number_field :increase %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :expiration_date %><br />
+      <%= f.date_field :expiration_date %>
+    </div>
+    <div class="field">
+      <%= f.label :payment_method_ids, allow_label_click: true%><br />
+      <%= f.collection_check_boxes(:payment_method_ids, @payment_methods, :id, :name, { multiple: true }) do |cb| %>
+        <%= cb.check_box %>
+        <%= cb.label %>
+      <% end %>
+    </div>
+
+    <%= f.submit "Enviar Proposta" %>
+
+
+  <% end %>
+</div>

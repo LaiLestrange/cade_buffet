@@ -1,6 +1,7 @@
 class Buffet < ApplicationRecord
   belongs_to :buffet_admin
 
+  has_many :orders
   has_many :event_types
   has_many :payment_methods
 

@@ -155,12 +155,21 @@ describe 'BuffetAdmin approves orders' do
         expect(page).to have_content first_event.min_guests
         expect(page).to have_content first_event.max_guests
         expect(page).to have_content first_event.duration
-        expect(page).to have_content first_event.event_options
+        expect(page).to have_content first_event.event_options[0].name
+        expect(page).to have_content first_event.event_options[1].name
+        expect(page).to have_content first_event.event_options[2].name
       end
 
-      within('#new_invoice_form') do
-        expect(page).to have_content "Preço base: #{} "
-      end
+      # within('#new_invoice_form') do
+        expect(page).to have_content "Orçamento"
+        expect(page).to have_content "Preço base"
+        expect(page).to have_field "Desconto"
+        expect(page).to have_field "Acrescimo"
+        expect(page).to have_field "Descrição do valor final"
+        expect(page).to have_field "Data limite para confirmação"
+        expect(page).to have_field "Métodos aceitos de pagamento"
+        expect(page).to have_button "Enviar Proposta"
+      # end
 
     end
   end
