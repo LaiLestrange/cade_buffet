@@ -35,4 +35,11 @@
 </div>
 
 
+
+<div id="invoice">
+    <%= render  "invoices/show" unless @order.invoice.blank? %>
+</div>
+
+
+
 <%= link_to 'Voltar', orders_path %>

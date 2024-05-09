@@ -143,9 +143,11 @@ describe 'BuffetAdmin view Orders' do
     expect(current_path).to eq orders_path
     expect(page).to have_content 'Pedidos'
     expect(page).to have_content first_order.code
-    expect(page).to have_content first_order.event_date
+    first_formatted_date = I18n.localize(first_order.event_date)
+    expect(page).to have_content first_formatted_date
     expect(page).to have_content second_order.code
-    expect(page).to have_content second_order.event_date
+    second_formatted_date = I18n.localize(second_order.event_date)
+    expect(page).to have_content second_formatted_date
 
 
   end

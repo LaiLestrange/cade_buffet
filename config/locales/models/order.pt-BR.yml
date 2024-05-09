@@ -1,8 +1,10 @@
 pt-BR:
-  waiting: 'Aguardando Avaliação'
-  approved: 'Aprovado'
-  confirmed: 'Confirmado'
+  waiting: 'Aguardando avaliação do Buffet'
+  approved: 'Aprovado, aguardando confirmação do Cliente'
+  confirmed: 'Confirmado pelo Cliente'
   canceled: 'Cancelado'
+  expired: 'Expirado'
+  done: 'Concluído'
   activerecord:
     models:
       order:

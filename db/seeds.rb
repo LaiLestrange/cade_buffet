@@ -433,19 +433,19 @@
 
   #region orders
     seed_order_1 = Order.create!(
-      event_date: 1.day.from_now,
+      event_date: 10.days.from_now,
       guests: 25,
       address: 'Endereço do Evento',
-      more_details: 'Evento que acontecerá amanhã',
+      more_details: 'Evento que acontecerá em 10 dias',
       customer: seed_customer_1,
       buffet: seed_buffet_1,
       event_type: seed_event_b1_1
     )
     seed_order_2 = Order.create!(
-      event_date: 1.week.from_now,
+      event_date: 10.weeks.from_now,
       guests: 25,
       address: 'Endereço do Evento',
-      more_details: 'Evento que acontecerá semana que vem',
+      more_details: 'Evento que acontecerá em 10 semanas',
       customer: seed_customer_1,
       buffet: seed_buffet_2,
       event_type: seed_event_b2_3
@@ -454,23 +454,23 @@
       event_date: 1.month.from_now,
       guests: 25,
       address: 'Endereço do Evento',
-      more_details: 'Evento que acontecerá mês que vem',
+      more_details: 'Evento que acontecerá daqui 1 mês',
       customer: seed_customer_2,
       buffet: seed_buffet_3,
       event_type: seed_event_b3_1
     )
     seed_order_4 = Order.create!(
-      event_date: 1.week.from_now,
+      event_date: 1.month.from_now,
       guests: 25,
       address: 'Endereço do Evento',
-      more_details: 'Evento que também acontecerá semana que vem',
+      more_details: 'Evento que também acontecerá daqui 1 mês',
       customer: seed_customer_2,
       buffet: seed_buffet_2,
       event_type: seed_event_b2_1
     )
     seed_order_5 = Order.create!(
       event_date: 1.year.from_now,
-      guests: 25,
+      guests: 80,
       address: 'Endereço do Evento',
       more_details: 'Evento que acontecerá ano que vem',
       customer: seed_customer_3,

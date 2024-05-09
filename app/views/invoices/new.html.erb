@@ -2,7 +2,7 @@
 
 <div id="order_details">
   <div>Pedido <%= @order.code %></div>
-  <div>Data do Evento: <%= @order.event_date %></div>
+  <div>Data do Evento: <%= I18n.localize @order.event_date %></div>
   <div>Quantidade de Convidados: <%= @order.guests %></div>
   <div>Endereço do Evento: <%= @order.address %></div>
   <div>Mais detalhes: <%= @order.more_details %></div>
@@ -25,6 +25,17 @@
 </div>
 <div id="new_invoice_form">
   <h2>Orçamento</h2>
+
+  <% if @invoice.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @invoice.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+
   <%= form_with model: [@order, @invoice] do |f|%>
     <%= hidden_field_tag(:order_id, @order.id) %>
     <div class="field">
@@ -48,13 +59,18 @@
       <%= f.label :expiration_date %><br />
       <%= f.date_field :expiration_date %>
     </div>
-    <div class="field">
-      <%= f.label :payment_method_ids, allow_label_click: true%><br />
-      <%= f.collection_check_boxes(:payment_method_ids, @payment_methods, :id, :name, { multiple: true }) do |cb| %>
-        <%= cb.check_box %>
-        <%= cb.label %>
-      <% end %>
-    </div>
+
+    <%# if @payment_methods.present? %>
+    <% unless @DEBUG %>
+      <div class="field">
+        <%= f.label :payment_methods_id, allow_label_click: true%><br />
+        <%= f.collection_check_boxes(:payment_methods_id, @payment_methods, :id, :name, { multiple: true }) do |cb| %>
+          <%= cb.check_box %>
+          <%= cb.label %>
+        <% end %>
+      </div>
+    <% end %>
+
 
     <%= f.submit "Enviar Proposta" %>
 

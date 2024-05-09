@@ -304,7 +304,7 @@ describe "Customer creates an order" do
     order = Order.last
     expect(current_path).to eq order_path(order)
     expect(page).to have_content "Pedido #{order.code}"
-    expect(page).to have_content "Status: Aguardando Avaliação"
+    expect(page).to have_content "Status: Aguardando avaliação do Buffet"
     expect(page).to have_content "Buffet: ABC"
     expect(page).to have_content "Tipo de Evento: Evento 2 de ABC"
     formatted_date = I18n.localize(1.day.from_now.to_date)

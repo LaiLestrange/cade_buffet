@@ -6,7 +6,7 @@
     <% @orders.each do |order| %>
       <div id="order" class=<%= order.status %>>
         <%= link_to order.code, order %>
-        <%= order.event_date %>
+        <%= I18n.localize order.event_date %>
         <%= order.status %>
       </div>
     <% end %>

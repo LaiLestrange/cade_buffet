@@ -4,10 +4,12 @@ class Order < ApplicationRecord
   belongs_to :event_type
   has_one :invoice
   enum status: {
-    waiting: 0,
-    approved: 5,
-    confirmed: 7,
-    canceled: 9
+    waiting: 0, #esperando aprovação OK
+    approved: 3, #criou o invoice OK
+    confirmed: 5, #cliente confirmou NEXT
+    canceled: 7, #um dos dois cancelou COULD_BE
+    expired: 9, #a data limite expirou COULD_BE
+    done: 12 #concluído COULD_BE
   }
 
   before_validation :generate_code

@@ -44,12 +44,14 @@ before_action :order_params, only: [:create]
   def show
     if customer_signed_in?
       @order = Order.find(params[:id])
+      info_extractor
       unless current_customer.orders.include?(@order)
         redirect_to orders_path, notice: 'Acesse os seus pedidos'
       end
     else
       if buffet_admin_signed_in?
         @order = Order.find(params[:id])
+        info_extractor
         @orders = Order.where(buffet: @order.buffet, event_date: @order.event_date)
         unless @order.buffet == current_buffet_admin.buffet
           redirect_to orders_path, notice: 'Acesse os seus pedidos'
@@ -70,7 +72,9 @@ before_action :order_params, only: [:create]
                         :waiting,
                         :confirmed,
                         :approved,
-                        :canceled
+                        :expired,
+                        :canceled,
+                        :done
                         ])
       else
         redirect_to root_path, notice: "Faça login primeiro"
@@ -86,6 +90,11 @@ before_action :order_params, only: [:create]
       :address,
       :more_details
       )
+  end
+
+  def info_extractor
+   @invoice = @order.invoice
+   @event = @order.event_type
   end
 
 end

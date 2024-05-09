@@ -11,4 +11,4 @@ pt-BR:
         expiration_date: 'Data limite para confirmação'
         order_id: 'Métodos aceitos de pagamento'
         final_price: 'Preço final'
-        payment_method_ids: 'Métodos de pagamento'
+        payment_methods_id: 'Métodos de pagamento'
