@@ -2,6 +2,9 @@ class Invoice < ApplicationRecord
   belongs_to :order
   # has_many :payment_methods
 
+  has_many :accepted_payment_methods
+  has_many :payment_methods, through: :accepted_payment_methods
+
   validates :expiration_date,
             :base_price,
             :final_price,

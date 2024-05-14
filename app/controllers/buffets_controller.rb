@@ -19,6 +19,7 @@ class BuffetsController < ApplicationController
       @buffet = Buffet.find(params[:id])
     end
     @events = EventType.where(buffet: @buffet)
+    @payment_methods = PaymentMethod.where(buffet: @buffet)
     if params[:id].to_i != @buffet.id
       redirect_to buffet_path(@buffet), notice: 'Veja o seu Buffet'
     end

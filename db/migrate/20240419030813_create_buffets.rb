@@ -13,7 +13,7 @@ class CreateBuffets < ActiveRecord::Migration[7.1]
       t.string :zip_code
       t.string :description
       t.references :buffet_admin, null: false, foreign_key: true
-      t.references :payment_methods, foreign_key: true
+      # t.references :payment_methods, foreign_key: true
 
       t.timestamps
     end

@@ -9,6 +9,6 @@ pt-BR:
         increase: 'Acrescimo'
         description: 'Descrição do valor final'
         expiration_date: 'Data limite para confirmação'
-        order_id: 'Métodos aceitos de pagamento'
+        order_id: 'Pedido'
         final_price: 'Preço final'
-        payment_methods_id: 'Métodos de pagamento'
+        payment_method_ids: 'Métodos de pagamento'

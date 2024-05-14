@@ -42,6 +42,8 @@ before_action :order_params, only: [:create]
   end
 
   def show
+
+
     if customer_signed_in?
       @order = Order.find(params[:id])
       info_extractor
@@ -93,8 +95,9 @@ before_action :order_params, only: [:create]
   end
 
   def info_extractor
-   @invoice = @order.invoice
    @event = @order.event_type
+   @invoice = @order.invoice
+   @payment_methods = @invoice.payment_methods if @invoice.present? && @invoice.payment_methods.present?
   end
 
 end

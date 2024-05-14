@@ -60,11 +60,10 @@
       <%= f.date_field :expiration_date %>
     </div>
 
-    <%# if @payment_methods.present? %>
-    <% unless @DEBUG %>
+    <% if @payment_methods.present? %>
       <div class="field">
-        <%= f.label :payment_methods_id, allow_label_click: true%><br />
-        <%= f.collection_check_boxes(:payment_methods_id, @payment_methods, :id, :name, { multiple: true }) do |cb| %>
+        <%= f.label :payment_method_ids, allow_label_click: true%><br />
+        <%= f.collection_check_boxes(:payment_method_ids, @payment_methods, :id, :name, { multiple: true }) do |cb| %>
           <%= cb.check_box %>
           <%= cb.label %>
         <% end %>

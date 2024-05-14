@@ -169,7 +169,7 @@ describe 'BuffetAdmin approves orders' do
         expect(page).to have_field "Acrescimo"
         expect(page).to have_field "Descrição do valor final"
         expect(page).to have_field "Data limite para confirmação"
-        # expect(page).to have_content "Métodos de pagamento"
+        expect(page).to have_content "Métodos de pagamento"
         expect(page).to have_button "Enviar Proposta"
       end
 
@@ -203,23 +203,23 @@ describe 'BuffetAdmin approves orders' do
           description: 'Esse é um Buffet de Eventos (1)',
           buffet_admin: admin
         )
-        # payment_methods = [
-        #   PaymentMethod.create!(
-        #     name: "Pix #{buffet.brand_name}",
-        #     details: "Chave: #{buffet.email}",
-        #     buffet: buffet
-        #   ),
-        #   PaymentMethod.create!(
-        #     name: 'Cartão de Crédito',
-        #     details: 'Parcela em até 12x com juros de +5%',
-        #     buffet: buffet
-        #   ),
-        #   PaymentMethod.create!(
-        #     name: 'Dinheiro',
-        #     details: 'Desconto de 10%',
-        #     buffet: buffet
-        #   )
-        # ]
+        payment_methods = [
+          PaymentMethod.create!(
+            name: "Pix #{buffet.brand_name}",
+            details: "Chave: #{buffet.email}",
+            buffet: buffet
+          ),
+          PaymentMethod.create!(
+            name: 'Cartão de Crédito',
+            details: 'Parcela em até 12x com juros de +5%',
+            buffet: buffet
+          ),
+          PaymentMethod.create!(
+            name: 'Dinheiro',
+            details: 'Desconto de 10%',
+            buffet: buffet
+          )
+        ]
 
         event = EventType.create!(
           name: "Evento 1 de #{buffet.brand_name}",
@@ -277,8 +277,8 @@ describe 'BuffetAdmin approves orders' do
           fill_in "Acrescimo", with: ''
           fill_in "Descrição do valor final", with: ''
           fill_in "Data limite para confirmação", with: 1.day.from_now
-          # check payment_methods[0].name
-          # check payment_methods[2].name
+          check payment_methods[0].name
+          check payment_methods[2].name
           click_on "Enviar Proposta"
         end
 
@@ -287,11 +287,12 @@ describe 'BuffetAdmin approves orders' do
         expect(page).to have_content 'Proposta enviada com sucesso!'
         expect(page).to have_content 'Proposta de Orçamento'
         expect(page).to have_content "Valor: R$#{invoice.final_price}"
-        expect(page).to have_content "Data limite para confirmação: #{invoice.expiration_date}"
-        # expect(page).to have_content "Métodos de pagamento"
-        # expect(page).to have_content payment_methods[0].name
-        # expect(page).not_to have_content payment_methods[1].name
-        # expect(page).to have_content payment_methods[2].name
+        formatted_date = I18n.localize invoice.expiration_date
+        expect(page).to have_content "Data limite para confirmação: #{formatted_date}"
+        expect(page).to have_content "Métodos de Pagamento"
+        expect(page).to have_content payment_methods[0].name
+        expect(page).not_to have_content payment_methods[1].name
+        expect(page).to have_content payment_methods[2].name
 
       end
 

@@ -3,3 +3,6 @@
 <div>Valor: R$<%= @invoice.final_price %></div>
 <div>Mais detalhes: <%= @invoice.description if @invoice.description.present? %> </div>
 <div>Data limite para confirmação: <%= I18n.localize @invoice.expiration_date %></div>
+
+<%= render  "payment_methods/index"  if @invoice.payment_methods.present? %>
+

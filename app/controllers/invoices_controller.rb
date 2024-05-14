@@ -5,6 +5,7 @@ class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new(base_price: base_price)
   end
+
   def create
     @invoice = Invoice.new(invoice_params)
     @invoice.order = @order
@@ -24,8 +25,7 @@ class InvoicesController < ApplicationController
     @order = Order.find(params[:order_id])
     @event = @order.event_type
     @buffet = @order.buffet
-    # @payment_methods = @buffet.payment_methods
-    @DEBUG = true
+    @payment_methods = @buffet.payment_methods
   end
 
   def invoice_params
@@ -34,7 +34,7 @@ class InvoicesController < ApplicationController
       :increase,
       :description,
       :expiration_date,
-      # :payment_methods_ids
+      payment_method_ids: []
     )
   end
 
