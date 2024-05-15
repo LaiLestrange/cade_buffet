@@ -25,7 +25,7 @@ class Order < ApplicationRecord
 
   private
   def generate_code
-    self.code = SecureRandom.alphanumeric(8).upcase
+    self.code = SecureRandom.alphanumeric(8).upcase if self.code.blank?
   end
 
   def event_date_is_future

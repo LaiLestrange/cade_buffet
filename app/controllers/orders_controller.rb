@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 before_action :authenticate_customer!, only: [:new, :create]
 before_action :order_params, only: [:create]
+before_action :expired_order, only: [:show]
   def new
     @order = Order.new
     buffet_id = params[:buffet_id]
@@ -67,6 +68,14 @@ before_action :order_params, only: [:create]
   def index
     if current_customer
       @orders = Order.where(customer: current_customer)
+                       .in_order_of(:status, [
+                        :approved,
+                        :waiting,
+                        :confirmed,
+                        :expired,
+                        :canceled,
+                        :done
+                        ])
     else
       if current_buffet_admin
         @orders = Order.where(buffet: current_buffet_admin)
@@ -81,6 +90,22 @@ before_action :order_params, only: [:create]
       else
         redirect_to root_path, notice: "Faça login primeiro"
       end
+    end
+  end
+
+  def confirm_event
+    order = Order.find(params[:id])
+    if order.invoice.present? && order.approved?
+      if Date.today <= order.invoice.expiration_date
+        order.confirmed!
+        redirect_to order_path(order), notice: "Evento confirmado com sucesso!"
+      else
+      flash.now[:notice] = "Esse pedido já expirou!"
+      render 'index'
+      end
+    else
+      flash.now[:notice] = "Você não pode alterar o status desse pedido!"
+      render 'index'
     end
   end
 
@@ -100,4 +125,12 @@ before_action :order_params, only: [:create]
    @payment_methods = @invoice.payment_methods if @invoice.present? && @invoice.payment_methods.present?
   end
 
+  def expired_order #melhor fazer no index ao inves do show
+    order = Order.find(params[:id])
+    if order.invoice.present?
+      if Date.today > order.invoice.expiration_date
+        order.expired!
+      end
+    end
+  end
 end

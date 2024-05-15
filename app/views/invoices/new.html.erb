@@ -40,7 +40,7 @@
     <%= hidden_field_tag(:order_id, @order.id) %>
     <div class="field">
       <%= f.label :base_price %><br />
-      <%= f.number_field :base_price, value: @base_price, disabled: true %>
+      <%= f.number_field :base_price, value: @invoice.base_price, disabled: true %>
       <%= hidden_field_tag(:base_price, @base_price) %>
     </div>
     <div class="field">

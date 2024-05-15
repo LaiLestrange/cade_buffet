@@ -1,8 +1,30 @@
 <h1>Proposta de Orçamento</h1>
 
 <div>Valor: R$<%= @invoice.final_price %></div>
-<div>Mais detalhes: <%= @invoice.description if @invoice.description.present? %> </div>
-<div>Data limite para confirmação: <%= I18n.localize @invoice.expiration_date %></div>
+
+<% if @invoice.description.present? %>
+  <div>Mais detalhes: <%= @invoice.description if @invoice.description.present? %> </div>
+<% end %>
+
+
+
+<% if @invoice.order.confirmed? %>
+  <div>Data do evento: <%= I18n.localize @invoice.order.event_date %></div>
+<% end %>
+
+
+<% if @invoice.order.approved? && Date.today <= @invoice.expiration_date %>
+  <div>Data limite para confirmação: <%= I18n.localize @invoice.expiration_date %></div>
+  <%= button_to 'Confirmar Evento', confirm_event_order_path(@order), method: :put, data: { confirm: 'Você tem certeza?' } if current_customer %>
+<% end %>
+
+
+<% if @invoice.order.expired? %>
+  <div>Sinto muito! Esse pedido perdeu a validade!</div>
+  <p>Data esperada da resposta: <%= I18n.localize @invoice.expiration_date %></p>
+<% end %>
+
+
 
 <%= render  "payment_methods/index"  if @invoice.payment_methods.present? %>
 

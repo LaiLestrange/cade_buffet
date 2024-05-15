@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     resources :invoices, only: [:new, :create]
   end
 
+  resources :orders do
+    put :confirm_event, on: :member
+  end
 
   get 'search', to:"home#search"
 end

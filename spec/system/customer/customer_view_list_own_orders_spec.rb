@@ -98,7 +98,8 @@ describe 'Customer views list of own orders' do
     expect(current_path).to eq orders_path
     expect(page).to have_content 'Meus Pedidos'
     expect(page).to have_content order.code
-    expect(page).to have_content order.event_date
+    formatted_date = I18n.localize order.event_date
+    expect(page).to have_content formatted_date
   end
 
   it 'and views all their orders' do
@@ -235,9 +236,11 @@ describe 'Customer views list of own orders' do
     expect(current_path).to eq orders_path
     expect(page).to have_content 'Meus Pedidos'
     expect(page).to have_content first_order.code
-    expect(page).to have_content first_order.event_date
+    first_formatted_date = I18n.localize first_order.event_date
+    expect(page).to have_content first_formatted_date
     expect(page).to have_content second_order.code
-    expect(page).to have_content second_order.event_date
+    second_formatted_date = I18n.localize second_order.event_date
+    expect(page).to have_content second_formatted_date
   end
 
   it 'and only views own orders' do
@@ -381,9 +384,11 @@ describe 'Customer views list of own orders' do
     expect(current_path).to eq orders_path
     expect(page).to have_content 'Meus Pedidos'
     expect(page).not_to have_content first_order.code
-    expect(page).not_to have_content first_order.event_date
+    first_formatted_date = I18n.localize first_order.event_date
+    expect(page).not_to have_content first_formatted_date
     expect(page).to have_content second_order.code
-    expect(page).to have_content second_order.event_date
+    second_formatted_date = I18n.localize second_order.event_date
+    expect(page).to have_content second_formatted_date
   end
 
   it 'and view message if there is no order' do
@@ -722,7 +727,8 @@ describe 'Customer view more details of order' do
     expect(page).not_to have_content first_order.code
     expect(page).not_to have_content first_order.event_date
     expect(page).to have_content second_order.code
-    expect(page).to have_content second_order.event_date
+    formatted_date = I18n.localize second_order.event_date
+    expect(page).to have_content formatted_date
   end
 
 end

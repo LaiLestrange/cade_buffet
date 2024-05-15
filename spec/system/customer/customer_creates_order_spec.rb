@@ -168,7 +168,7 @@ describe "Customer creates an order" do
         description: "Organização e decoração do espaço do evento"),
       EventOption.create!(name: "Valet",
         description: "Serviço de estacionamento durante o evento")
-        ]
+    ]
 
     admin =  BuffetAdmin.create!(
       name: "Administrador de Buffet",

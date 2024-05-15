@@ -286,6 +286,7 @@ describe 'BuffetAdmin approves orders' do
         expect(current_path).to eq order_path(order)
         expect(page).to have_content 'Proposta enviada com sucesso!'
         expect(page).to have_content 'Proposta de Orçamento'
+        expect(page).to have_content 'Aprovado, aguardando confirmação do Cliente'
         expect(page).to have_content "Valor: R$#{invoice.final_price}"
         formatted_date = I18n.localize invoice.expiration_date
         expect(page).to have_content "Data limite para confirmação: #{formatted_date}"
@@ -296,6 +297,11 @@ describe 'BuffetAdmin approves orders' do
 
       end
 
+      #using discount
+      #using increase
+      #using both
+
+      #and needs to insert description
     end
   end
 end
