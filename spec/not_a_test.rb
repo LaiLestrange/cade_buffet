@@ -563,13 +563,10 @@ describe 'Não são testes!!!!' do
 
     it 'arrange com 1 admin, buffet, evento e customer, e payments e prices comentados e 1 order' do
       event_options = [
-        EventOption.create!(name: "Bar",
-          description: "Serviço de bebida alcóolica durante o evento"),
-        EventOption.create!(name: "Decoração",
-          description: "Organização e decoração do espaço do evento"),
-        EventOption.create!(name: "Valet",
-          description: "Serviço de estacionamento durante o evento")
-          ]
+        EventOption.create!(name: "Bar", description: "Serviço de bebida alcóolica durante o evento"),
+        EventOption.create!(name: "Decoração", description: "Organização e decoração do espaço do evento"),
+        EventOption.create!(name: "Valet", description: "Serviço de estacionamento durante o evento")
+      ]
 
       admin =  BuffetAdmin.create!(
         name: "Administrador de Buffet",
@@ -589,6 +586,7 @@ describe 'Não são testes!!!!' do
         description: 'Esse é um Buffet de Eventos (1)',
         buffet_admin: admin
       )
+      
       # payment_methods = [
       #   PaymentMethod.create!(
       #     name: "Pix #{buffet.brand_name}",

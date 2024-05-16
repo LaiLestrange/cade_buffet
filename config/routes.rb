@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  # APP
   root to: 'home#index'
+  get 'search', to:"home#search"
 
   devise_for :customers,
     path: "customers",
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :payment_methods, only: [:new, :create]
   resources :event_prices, only: [:new, :create]
+
   resources :orders, only: [:new, :create, :show, :index] do
     resources :invoices, only: [:new, :create]
   end
@@ -27,5 +30,13 @@ Rails.application.routes.draw do
     put :confirm_event, on: :member
   end
 
-  get 'search', to:"home#search"
+  # API
+
+  namespace :api do
+    namespace :v1 do
+      resources :buffets, only: [:show, :index]
+      post 'search', to: "buffets#search"
+      post 'availability', to: "buffets#availability"
+    end
+  end
 end
