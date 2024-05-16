@@ -1,0 +1,45 @@
+API CadêBuffet?
+
+Para utilizar essa API, utilize as requisições a seguir:
+
+Listar os Buffets disponíveis na plataforma.
+	requisição: GET /api/v1/buffets
+	Espera responder com status 200 se conseguir concluir a requisição
+	Espera responder com status 204 se não houver Buffets cadastrados na plataforma
+
+Ver os detalhes de um Buffet, além dos tipos de eventos que ele fornece.
+	requisição: GET /api/v1/buffets/:id
+	Espera receber via params: buffet_id: buffet.id
+	Espera responder com status 200 se conseguir concluir a requisição
+	Espera responder com status 404 se não existir Buffet com o :id especificado
+
+Pesquisar um Buffet pelo seu nome
+	requisição: POST /api/v1/search
+	Espera receber via params: { query: NOME_PESQUISADO }
+	Espera responder com status 200 se conseguir concluir a requisição
+	Espera responder com { errors: "Não há buffet com NOME_PESQUISADO no nome" } se não obtiver resultados com o parâmetro enviado
+
+
+Pesquisar a disponibilidade de um Buffet pelo tipo de evento, quantidade de convidados e data do evento.
+	requisição: POST /api/v1/availability
+	Espera receber via params: {
+     	      event_id: event.id,
+  	      date: data_do_evento
+   	      guests: número_de_convidados
+  	   }
+	Espera responder com status 200 se conseguir concluir a requisição
+	Espera responder com json { availability: 'disponibilidade', available: boolean }
+		Se a data escolhida possuir um evento com status waiting, confirmed ou approved, retorna: 
+			{ availability: 'O Buffet não está disponível para realizar eventos nesta data',
+			available: false }
+		Se a quantidade de convidados for inferior à mínima definida pelo evento, retorna:
+			{ availability: 'A quantidade mínima de convidados para esse evento não foi atingida',
+			available: false }
+		Se a quantidade de convidados for superior à máxima definida pelo evento, retorna:
+			{ availability: A quantidade máxima de convidados para esse evento foi excedida,
+			available: false }
+		Se a quantidade de convidados e a data do evento forem adequadas, retorna:
+			{ availability: 'O Buffet está disponível para realizar esse evento',
+			available: true }
+
+
