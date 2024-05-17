@@ -40,7 +40,7 @@ Pesquisar a disponibilidade de um Buffet pelo tipo de evento, quantidade de conv
 			available: false }
 		Se a quantidade de convidados e a data do evento forem adequadas, retorna:
 			{ availability: 'O Buffet está disponível para realizar esse evento',
-			available: true }
+			available: true, base_price:'2000.0' }
 
 
 Exemplo de resultado de Detalhes de um Buffet:
