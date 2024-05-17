@@ -4,13 +4,13 @@ class Api::V1::BuffetsController < Api::V1::ApiController
     buffet = Buffet.find(params[:id])
     render status: 200, json: {
       buffet: buffet.as_json( except: [:registration_number, :brand_name, :created_at, :updated_at]),
-      event_types: buffet.event_types.as_json( except: [:created_at, :updated_at])
+      event_types: buffet.event_types.as_json( except: [:created_at, :updated_at, :event_price_id]),
     }
   end
 
   def index
     buffets = Buffet.all
-    render status: 200, json: buffets
+    render status: 200, json: buffets.as_json( except: [:created_at, :updated_at])
   end
 
   def search
@@ -38,7 +38,8 @@ class Api::V1::BuffetsController < Api::V1::ApiController
       if guests >= event.min_guests && guests <= event.max_guests
         render status: 200, json: {
           availability: "O Buffet está disponível para realizar esse evento",
-          available: true
+          available: true,
+          base_price: set_base_price(event, date, guests)
         }
       else
         if guests < event.min_guests
@@ -61,5 +62,28 @@ class Api::V1::BuffetsController < Api::V1::ApiController
       }
     end
 
+  end
+
+  private
+  def set_base_price(event, date, guests)
+    date = Date.parse date
+    if event.event_prices.present? && event.event_prices.count == 1
+      price = event.event_prices.first
+    else
+      if date.on_weekend?
+        price = event.event_prices.where(weekend_schedule: true).first
+      else
+        price = event.event_prices.where(weekend_schedule: false).first
+      end
+    end
+
+    base_price = price.min_price  # if price.present?
+
+    if guests > event.max_guests
+      extra_guests = guests - event.max_guests
+      base_price += extra_guests * price.extra_guest_fee
+    end
+
+    base_price
   end
 end

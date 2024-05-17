@@ -29,7 +29,7 @@ Pesquisar a disponibilidade de um Buffet pelo tipo de evento, quantidade de conv
   	   }
 	Espera responder com status 200 se conseguir concluir a requisição
 	Espera responder com json { availability: 'disponibilidade', available: boolean }
-		Se a data escolhida possuir um evento com status waiting, confirmed ou approved, retorna: 
+		Se a data escolhida possuir um evento com status waiting, confirmed ou approved, retorna:
 			{ availability: 'O Buffet não está disponível para realizar eventos nesta data',
 			available: false }
 		Se a quantidade de convidados for inferior à mínima definida pelo evento, retorna:
@@ -43,3 +43,107 @@ Pesquisar a disponibilidade de um Buffet pelo tipo de evento, quantidade de conv
 			available: true }
 
 
+Exemplo de resultado de Detalhes de um Buffet:
+{
+    "buffet": {
+        "id": 1,
+        "company_name": "B1A1SEED Buffet de Eventos LTDA",
+        "phone_number": "11 1111-1111",
+        "email": "eventos1@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 1",
+        "address": "Rua dos Eventos, 1, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 1
+    },
+    "event_types": [
+        {
+            "id": 1,
+            "name": "E1B1SEED Tipo de Evento",
+            "description": "E1B1SEED Descrição do evento, propaganda, etc",
+            "menu": "E1B1SEED Cardápio do evento, tipo de comida etc",
+            "location": false,
+            "min_guests": 10,
+            "max_guests": 50,
+            "duration": 120,
+            "buffet_id": 1
+        },
+        {
+            "id": 2,
+            "name": "E2B1SEED Tipo de Evento",
+            "description": "E2B1SEED Descrição do evento, propaganda, etc",
+            "menu": "E2B1SEED Cardápio do evento, tipo de comida etc",
+            "location": true,
+            "min_guests": 10,
+            "max_guests": 50,
+            "duration": 120,
+            "buffet_id": 1
+        },
+        {
+            "id": 3,
+            "name": "E3B1SEED Tipo de Evento",
+            "description": "E3B1SEED Descrição do evento, propaganda, etc",
+            "menu": "E3B1SEED Cardápio do evento, tipo de comida etc",
+            "location": false,
+            "min_guests": 10,
+            "max_guests": 50,
+            "duration": 120,
+            "buffet_id": 1
+        }
+    ]
+}
+
+Formato: { buffet: {}, event_types: [{}, {}]}
+
+Exemplo do resultado da listagem de Buffets
+[
+    {
+        "id": 1,
+        "brand_name": "B1A1SEED Eventos Buffet",
+        "company_name": "B1A1SEED Buffet de Eventos LTDA",
+        "registration_number": "19999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos1@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 1",
+        "address": "Rua dos Eventos, 1, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 1
+    },
+    {
+        "id": 2,
+        "brand_name": "B2A2SEED Eventos Buffet",
+        "company_name": "B2A2SEED Buffet de Eventos LTDA",
+        "registration_number": "29999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos2@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 2",
+        "address": "Rua dos Eventos, 2, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 2
+    },
+    {
+        "id": 3,
+        "brand_name": "B3A3SEED Eventos Buffet",
+        "company_name": "B3A3SEED Buffet de Eventos LTDA",
+        "registration_number": "39999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos3@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 3",
+        "address": "Rua dos Eventos, 3, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 3
+    }
+]
+
+Formato: [{}, {}]

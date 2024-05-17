@@ -283,6 +283,12 @@ describe 'Orders API' do
         buffet_admin: admin
       )
 
+      # payment_methods = [
+      #   PaymentMethod.create!(name: "Pix #{buffet.brand_name}", details: "Chave: #{buffet.email}", buffet: buffet),
+      #   PaymentMethod.create!(name: 'Cartão de Crédito', details: 'Parcela em até 12x com juros de +5%', buffet: buffet),
+      #   PaymentMethod.create!(name: 'Dinheiro', details: 'Desconto de 10%', buffet: buffet)
+      # ]
+
       event = EventType.create!(
         name: "Evento de #{buffet.brand_name}",
         description: 'Descrição do evento, propaganda, etc',
@@ -293,6 +299,22 @@ describe 'Orders API' do
         duration: 120,
         event_options: event_options,
         buffet: buffet
+      )
+
+      weekday_price = EventPrice.create!(
+        min_price: 1000,
+        extra_guest_fee: 10,
+        overtime_fee: 11,
+        weekend_schedule: false,
+        event_type: event
+      )
+
+      weekend_price = EventPrice.create!(
+        min_price: 1500,
+        extra_guest_fee: 15,
+        overtime_fee: 16,
+        weekend_schedule: true,
+        event_type: event
       )
 
       customer = Customer.create!(
@@ -325,6 +347,7 @@ describe 'Orders API' do
       json_response = JSON.parse response.body
       expect(json_response["availability"]).to eq "O Buffet está disponível para realizar esse evento"
       expect(json_response["available"]).to eq true
+      expect(json_response["base_price"]).to eq '1000.0'
 
     end
 
