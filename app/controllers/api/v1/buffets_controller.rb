@@ -16,7 +16,7 @@ class Api::V1::BuffetsController < Api::V1::ApiController
   def search
     buffets = Buffet.where('brand_name like ?', "%#{params[:query]}%")
     if buffets.present?
-      render status: 200, json: buffets
+      render status: 200, json: buffets.as_json( except: [:created_at, :updated_at])
     else
       msg = "Não há buffet com #{params[:query]} no nome"
       render status: 200, json: {errors: msg}

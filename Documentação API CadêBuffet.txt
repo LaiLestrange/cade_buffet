@@ -147,3 +147,56 @@ Exemplo do resultado da listagem de Buffets
 ]
 
 Formato: [{}, {}]
+
+
+Exemplo de resultado da pesquisa de Buffets, com params: { query: "seed" }
+
+[
+    {
+        "id": 1,
+        "brand_name": "B1A1SEED Eventos Buffet",
+        "company_name": "B1A1SEED Buffet de Eventos LTDA",
+        "registration_number": "19999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos1@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 1",
+        "address": "Rua dos Eventos, 1, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 1
+    },
+    {
+        "id": 2,
+        "brand_name": "B2A2SEED Eventos Buffet",
+        "company_name": "B2A2SEED Buffet de Eventos LTDA",
+        "registration_number": "29999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos2@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 2",
+        "address": "Rua dos Eventos, 2, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 2
+    },
+    {
+        "id": 3,
+        "brand_name": "B3A3SEED Eventos Buffet",
+        "company_name": "B3A3SEED Buffet de Eventos LTDA",
+        "registration_number": "39999",
+        "phone_number": "11 1111-1111",
+        "email": "eventos3@buffet.com.seed",
+        "full_address": "Rua dos Eventos, 3",
+        "address": "Rua dos Eventos, 3, Eventual (EV) - 33333-333",
+        "state": "EV",
+        "city": "Eventual",
+        "zip_code": "33333-333",
+        "description": "Esse é um Buffet de Eventos",
+        "buffet_admin_id": 3
+    }
+]
+
+Formato: [{}, {}]
