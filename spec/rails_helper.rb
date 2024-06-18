@@ -3,13 +3,11 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
-
 require 'simplecov'
 SimpleCov.start 'rails' do
-add_filter 'channels'
-add_filter 'mailers'
+  add_filter 'channels'
+  add_filter 'mailers'
 end
-
 
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?

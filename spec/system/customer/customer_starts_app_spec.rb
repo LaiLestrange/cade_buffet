@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe "Customer starts the app" do
   it "and logs in successfully" do
-    customer = Customer.create!(
-      name: 'Nome do Cliente',
-      social_security_number: "48527862085",
-      email: "cliente@buffet.com",
-      password: "cl13n73"
-    )
+    # customer = Customer.create!(
+    #   name: 'Nome do Cliente',
+    #   social_security_number: "48527862085",
+    #   email: "cliente@buffet.com",
+    #   password: "cl13n73"
+    # )
+    customer = FactoryBot.create(:customer, name: 'Nome do Cliente')
+    puts customer.email
 
     visit root_path
 
